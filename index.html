@@ -1,7 +1,7 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
+<!-- saved from url=(0014)about:internet -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>DevLaunch — My Software Hub</title>
 <style>
@@ -21,1285 +21,1364 @@
     --muted: #6b7280;
   }
 
-  * { margin: 0; padding: 0; box-sizing: border-box; }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { background:var(--bg); color:var(--text); font-family:'Space Grotesk',sans-serif; min-height:100vh; }
 
-  body {
-    background: var(--bg);
-    color: var(--text);
-    font-family: 'Space Grotesk', sans-serif;
-    min-height: 100vh;
+  /* ── INLINE EDIT HIGHLIGHT ── */
+  [contenteditable]:hover { outline: 1px dashed rgba(108,99,255,0.4); border-radius:4px; cursor:text; }
+  [contenteditable]:focus { outline: 2px solid var(--accent); border-radius:4px; background:rgba(108,99,255,0.06); }
+  .edit-indicator {
+    font-size:0.65rem; color:var(--accent2); font-family:'JetBrains Mono',monospace;
+    letter-spacing:0.05em; opacity:0; transition:opacity 0.2s; margin-left:0.4rem;
+    vertical-align:middle; pointer-events:none;
   }
+  *:hover > .edit-indicator { opacity:1; }
 
   /* ── HEADER ── */
   header {
-    background: var(--surface);
-    border-bottom: 1px solid var(--border);
-    padding: 0 2rem;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    height: 64px;
-    position: sticky;
-    top: 0;
-    z-index: 100;
-    backdrop-filter: blur(12px);
+    background:var(--surface); border-bottom:1px solid var(--border);
+    padding:0 2rem; display:flex; align-items:center;
+    justify-content:space-between; height:64px;
+    position:sticky; top:0; z-index:100; backdrop-filter:blur(12px);
   }
+  .logo-wrap { display:flex; align-items:center; gap:0.75rem; }
   .logo {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 1.2rem;
-    font-weight: 500;
-    color: var(--accent2);
-    letter-spacing: -0.02em;
+    font-family:'JetBrains Mono',monospace; font-size:1.2rem;
+    font-weight:500; color:var(--accent2); letter-spacing:-0.02em;
+    outline:none; min-width:60px;
   }
-  .logo span { color: var(--accent); }
-  .header-actions { display: flex; gap: 0.75rem; align-items: center; }
+  .logo-dot { color:var(--accent); }
+  .logo-tagline {
+    font-size:0.75rem; color:var(--muted);
+    border-left:1px solid var(--border); padding-left:0.75rem;
+    outline:none; min-width:40px;
+  }
+  .header-actions { display:flex; gap:0.6rem; align-items:center; }
 
   /* ── BUTTONS ── */
   .btn {
-    padding: 0.5rem 1.1rem;
-    border-radius: 8px;
-    font-family: 'Space Grotesk', sans-serif;
-    font-size: 0.875rem;
-    font-weight: 500;
-    cursor: pointer;
-    transition: all 0.15s;
-    border: none;
+    padding:0.48rem 1.05rem; border-radius:8px;
+    font-family:'Space Grotesk',sans-serif; font-size:0.855rem;
+    font-weight:500; cursor:pointer; transition:all 0.15s; border:none;
   }
-  .btn-ghost { background: transparent; color: var(--muted); border: 1px solid var(--border); }
-  .btn-ghost:hover { color: var(--text); border-color: var(--accent); }
-  .btn-primary { background: var(--accent); color: #fff; }
-  .btn-primary:hover { background: #7c75ff; transform: translateY(-1px); }
-  .btn-sm { padding: 0.35rem 0.8rem; font-size: 0.8rem; }
-  .btn-danger { background: var(--red); color: #fff; }
-  .btn-danger:hover { background: #ff5252; }
+  .btn-ghost { background:transparent; color:var(--muted); border:1px solid var(--border); }
+  .btn-ghost:hover { color:var(--text); border-color:var(--accent); }
+  .btn-primary { background:var(--accent); color:#fff; }
+  .btn-primary:hover { background:#7c75ff; transform:translateY(-1px); }
+  .btn-sm { padding:0.32rem 0.75rem; font-size:0.78rem; }
+  .btn-danger { background:var(--red); color:#fff; }
+  .btn-danger:hover { background:#ff4444; }
 
   /* ── HERO ── */
   .hero {
-    padding: 3.5rem 2rem 2.5rem;
-    text-align: center;
-    background: radial-gradient(ellipse 80% 60% at 50% -10%, rgba(108,99,255,0.18) 0%, transparent 70%);
+    padding:3.5rem 2rem 2.5rem; text-align:center;
+    background:radial-gradient(ellipse 80% 60% at 50% -10%, rgba(108,99,255,0.18) 0%, transparent 70%);
+    position:relative;
   }
   .hero-eyebrow {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.78rem;
-    color: var(--accent2);
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    margin-bottom: 1rem;
+    font-family:'JetBrains Mono',monospace; font-size:0.76rem;
+    color:var(--accent2); letter-spacing:0.15em; text-transform:uppercase;
+    margin-bottom:0.9rem; outline:none;
   }
   .hero h1 {
-    font-size: clamp(2rem, 5vw, 3.2rem);
-    font-weight: 700;
-    line-height: 1.1;
-    letter-spacing: -0.03em;
-    background: linear-gradient(135deg, #e8eaf0 30%, var(--accent2));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    margin-bottom: 0.9rem;
+    font-size:clamp(2rem,5vw,3.2rem); font-weight:700; line-height:1.1;
+    letter-spacing:-0.03em;
+    background:linear-gradient(135deg,#e8eaf0 30%,var(--accent2));
+    -webkit-background-clip:text; -webkit-text-fill-color:transparent;
+    background-clip:text; margin-bottom:0.9rem;
+    outline:none; display:inline-block; min-width:100px;
   }
   .hero p {
-    color: var(--muted);
-    font-size: 1rem;
-    max-width: 500px;
-    margin: 0 auto;
-    line-height: 1.65;
+    color:var(--muted); font-size:1rem; max-width:500px;
+    margin:0 auto; line-height:1.65; outline:none; min-width:80px;
+  }
+  .hero-edit-hint {
+    position:absolute; bottom:0.75rem; right:1.5rem;
+    font-size:0.7rem; color:var(--muted); font-family:'JetBrains Mono',monospace;
+    opacity:0.5; pointer-events:none;
   }
 
-  /* ══════════════════════════════════
-     QUICK ACCESS SECTION
-  ══════════════════════════════════ */
-  .quick-access-section {
-    padding: 2rem 2rem 0;
-  }
-  .section-header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-bottom: 1.1rem;
+  /* ── QUICK ACCESS ── */
+  .quick-section { padding:1.75rem 2rem 0; }
+  .section-hdr {
+    display:flex; align-items:center; justify-content:space-between; margin-bottom:1rem;
   }
   .section-label {
-    display: flex;
-    align-items: center;
-    gap: 0.6rem;
-    font-size: 0.78rem;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    color: var(--muted);
+    display:flex; align-items:center; gap:0.6rem;
+    font-size:0.76rem; font-weight:600; text-transform:uppercase;
+    letter-spacing:0.1em; color:var(--muted);
   }
   .section-label::before {
-    content: '';
-    display: inline-block;
-    width: 3px;
-    height: 14px;
-    background: var(--accent);
-    border-radius: 2px;
+    content:''; display:inline-block; width:3px; height:13px;
+    background:var(--accent); border-radius:2px;
   }
   .section-count {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.75rem;
-    color: var(--muted);
-    background: var(--surface2);
-    border: 1px solid var(--border);
-    padding: 0.2rem 0.6rem;
-    border-radius: 20px;
+    font-family:'JetBrains Mono',monospace; font-size:0.72rem; color:var(--muted);
+    background:var(--surface2); border:1px solid var(--border);
+    padding:0.18rem 0.55rem; border-radius:20px;
   }
-
-  /* Quick access pill row */
   .qa-row {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.6rem;
-    padding-bottom: 1.75rem;
-    border-bottom: 1px solid var(--border);
+    display:flex; flex-wrap:wrap; gap:0.55rem;
+    padding-bottom:1.75rem; border-bottom:1px solid var(--border);
   }
   .qa-pill {
-    display: flex;
-    align-items: center;
-    gap: 0.55rem;
-    padding: 0.5rem 1rem;
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 50px;
-    cursor: pointer;
-    font-size: 0.85rem;
-    font-weight: 500;
-    color: var(--text);
-    text-decoration: none;
-    transition: all 0.18s;
-    position: relative;
-    overflow: hidden;
-  }
-  .qa-pill::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(90deg, transparent, rgba(108,99,255,0.08));
-    opacity: 0;
-    transition: opacity 0.2s;
+    display:inline-flex; align-items:center; gap:0.5rem;
+    padding:0.45rem 1rem; background:var(--surface); border:1px solid var(--border);
+    border-radius:50px; cursor:pointer; font-size:0.83rem; font-weight:500;
+    color:var(--text); text-decoration:none; transition:all 0.18s;
   }
   .qa-pill:hover {
-    border-color: var(--accent);
-    color: var(--accent2);
-    transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(108,99,255,0.2);
+    border-color:var(--accent); color:var(--accent2);
+    transform:translateY(-2px); box-shadow:0 6px 20px rgba(108,99,255,0.2);
   }
-  .qa-pill:hover::after { opacity: 1; }
-  .qa-pill .pill-icon { font-size: 1rem; }
-  .qa-pill .pill-name { line-height: 1; }
-  .qa-pill .pill-arrow {
-    font-size: 0.7rem;
-    color: var(--muted);
-    margin-left: 0.1rem;
-    transition: transform 0.15s;
-  }
-  .qa-pill:hover .pill-arrow { transform: translate(2px, -2px); color: var(--accent2); }
-
-  /* Link type badge inside pill */
+  .pill-icon { font-size:0.95rem; }
   .pill-type {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.62rem;
-    padding: 0.1rem 0.4rem;
-    border-radius: 4px;
-    background: rgba(108,99,255,0.15);
-    color: var(--accent2);
-    border: 1px solid rgba(108,99,255,0.25);
-    line-height: 1.4;
+    font-family:'JetBrains Mono',monospace; font-size:0.6rem;
+    padding:0.1rem 0.38rem; border-radius:4px;
+    background:rgba(108,99,255,0.15); color:var(--accent2);
+    border:1px solid rgba(108,99,255,0.22);
   }
+  .pill-arrow { font-size:0.65rem; color:var(--muted); transition:transform 0.15s; }
+  .qa-pill:hover .pill-arrow { transform:translate(2px,-2px); color:var(--accent2); }
 
-  /* ── CONTROLS BAR ── */
+  /* ── CONTROLS ── */
   .controls-bar {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 1.25rem 2rem;
-    flex-wrap: wrap;
-    gap: 1rem;
+    display:flex; align-items:center; justify-content:space-between;
+    padding:1.1rem 2rem; flex-wrap:wrap; gap:0.75rem;
   }
-  .search-wrap {
-    position: relative;
-    flex: 1;
-    max-width: 340px;
-  }
+  .search-wrap { position:relative; flex:1; max-width:320px; }
   .search-wrap input {
-    width: 100%;
-    background: var(--surface2);
-    border: 1px solid var(--border);
-    border-radius: 8px;
-    padding: 0.55rem 1rem 0.55rem 2.4rem;
-    color: var(--text);
-    font-family: 'Space Grotesk', sans-serif;
-    font-size: 0.875rem;
-    outline: none;
-    transition: border-color 0.15s;
+    width:100%; background:var(--surface2); border:1px solid var(--border);
+    border-radius:8px; padding:0.5rem 1rem 0.5rem 2.3rem;
+    color:var(--text); font-family:'Space Grotesk',sans-serif;
+    font-size:0.855rem; outline:none; transition:border-color 0.15s;
   }
-  .search-wrap input:focus { border-color: var(--accent); }
+  .search-wrap input:focus { border-color:var(--accent); }
   .search-wrap svg {
-    position: absolute;
-    left: 0.75rem;
-    top: 50%;
-    transform: translateY(-50%);
-    color: var(--muted);
-    pointer-events: none;
+    position:absolute; left:0.7rem; top:50%; transform:translateY(-50%);
+    color:var(--muted); pointer-events:none;
   }
-  .controls-right { display: flex; gap: 0.6rem; align-items: center; }
   .sort-select {
-    background: var(--surface2);
-    border: 1px solid var(--border);
-    border-radius: 8px;
-    padding: 0.5rem 0.8rem;
-    color: var(--muted);
-    font-family: 'Space Grotesk', sans-serif;
-    font-size: 0.82rem;
-    outline: none;
-    cursor: pointer;
+    background:var(--surface2); border:1px solid var(--border); border-radius:8px;
+    padding:0.5rem 0.8rem; color:var(--muted); font-family:'Space Grotesk',sans-serif;
+    font-size:0.8rem; outline:none; cursor:pointer;
   }
-  .sort-select:focus { border-color: var(--accent); color: var(--text); }
 
   /* ── GRID ── */
-  .grid-container { padding: 0 2rem 3rem; }
-  .grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(330px, 1fr));
-    gap: 1.5rem;
-  }
+  .grid-container { padding:0 2rem 3rem; }
+  .grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(320px,1fr)); gap:1.5rem; }
 
-  /* ── SOFTWARE CARD ── */
+  /* ── CARD ── */
   .card {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 14px;
-    overflow: hidden;
-    transition: border-color 0.2s, transform 0.2s, box-shadow 0.2s;
-    display: flex;
-    flex-direction: column;
+    background:var(--surface); border:1px solid var(--border);
+    border-radius:14px; overflow:hidden; transition:border-color 0.2s,transform 0.2s,box-shadow 0.2s;
+    display:flex; flex-direction:column;
   }
   .card:hover {
-    border-color: rgba(108,99,255,0.5);
-    transform: translateY(-3px);
-    box-shadow: 0 16px 40px rgba(0,0,0,0.4);
+    border-color:rgba(108,99,255,0.45); transform:translateY(-3px);
+    box-shadow:0 16px 40px rgba(0,0,0,0.4);
   }
 
-  .card-media {
-    position: relative;
-    height: 180px;
-    background: var(--surface2);
-    overflow: hidden;
-    cursor: pointer;
+  /* ── LAUNCH BANNER ── */
+  .launch-banner {
+    position:relative; height:200px; cursor:pointer;
+    display:flex; flex-direction:column;
+    align-items:center; justify-content:center; gap:0.9rem;
+    overflow:hidden; transition:filter 0.2s;
+    background:var(--surface2);
   }
-  .card-media img, .card-media video {
-    width: 100%; height: 100%; object-fit: cover; display: block;
+  .launch-banner::before {
+    content:''; position:absolute; inset:0;
+    background:radial-gradient(ellipse 80% 80% at 50% 50%, var(--card-glow,rgba(108,99,255,0.18)) 0%, transparent 70%);
+    transition:opacity 0.3s;
   }
-  .media-placeholder {
-    width: 100%; height: 100%;
-    display: flex; flex-direction: column;
-    align-items: center; justify-content: center;
-    gap: 0.5rem; color: var(--muted); font-size: 0.82rem;
+  .launch-banner:hover::before { opacity:1.6; }
+  .launch-banner-grid {
+    position:absolute; inset:0;
+    background-image:linear-gradient(rgba(255,255,255,0.03) 1px,transparent 1px),
+                      linear-gradient(90deg,rgba(255,255,255,0.03) 1px,transparent 1px);
+    background-size:28px 28px;
   }
-  .media-placeholder svg { width: 36px; height: 36px; opacity: 0.35; }
-  .media-badge {
-    position: absolute; top: 10px; left: 10px;
-    background: rgba(0,0,0,0.7); backdrop-filter: blur(6px);
-    padding: 0.22rem 0.6rem; border-radius: 6px;
-    font-family: 'JetBrains Mono', monospace; font-size: 0.7rem;
-    color: var(--accent2); border: 1px solid rgba(108,99,255,0.3);
+  .launch-name {
+    font-family:'Space Grotesk',sans-serif; font-size:1.55rem; font-weight:700;
+    color:#fff; letter-spacing:-0.02em; text-align:center;
+    text-shadow:0 2px 20px rgba(0,0,0,0.6); z-index:1; position:relative;
+    padding:0 1rem; line-height:1.2;
   }
-  .media-upload-btn {
-    position: absolute; bottom: 10px; right: 10px;
-    background: rgba(0,0,0,0.75); border: 1px solid var(--border);
-    color: var(--text); padding: 0.32rem 0.7rem; border-radius: 6px;
-    font-size: 0.76rem; cursor: pointer; font-family: 'Space Grotesk', sans-serif;
-    display: flex; align-items: center; gap: 0.4rem;
-    opacity: 0; transition: opacity 0.2s;
+  .play-btn {
+    width:54px; height:54px; border-radius:50%;
+    background:rgba(255,255,255,0.12); backdrop-filter:blur(8px);
+    border:2px solid rgba(255,255,255,0.25);
+    display:flex; align-items:center; justify-content:center;
+    transition:all 0.2s; z-index:1; position:relative;
+    flex-shrink:0;
   }
-  .card:hover .media-upload-btn { opacity: 1; }
-  .media-upload-btn:hover { background: var(--accent); border-color: var(--accent); }
+  .launch-banner:hover .play-btn {
+    background:var(--accent); border-color:var(--accent);
+    transform:scale(1.1); box-shadow:0 0 30px rgba(108,99,255,0.6);
+  }
+  .play-btn svg { width:20px; height:20px; fill:#fff; margin-left:3px; }
+  .launch-url-label {
+    font-family:'JetBrains Mono',monospace; font-size:0.7rem;
+    color:rgba(255,255,255,0.45); z-index:1; position:relative;
+    max-width:240px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;
+    text-align:center;
+  }
+  .banner-cat-badge {
+    position:absolute; top:10px; left:10px;
+    background:rgba(0,0,0,0.55); backdrop-filter:blur(6px);
+    padding:0.2rem 0.55rem; border-radius:6px;
+    font-family:'JetBrains Mono',monospace; font-size:0.68rem;
+    color:var(--accent2); border:1px solid rgba(108,99,255,0.28); z-index:2;
+  }
+  .banner-edit-btn {
+    position:absolute; top:10px; right:10px; z-index:2;
+    background:rgba(0,0,0,0.6); border:1px solid rgba(255,255,255,0.15);
+    color:rgba(255,255,255,0.7); padding:0.25rem 0.6rem; border-radius:6px;
+    font-size:0.72rem; cursor:pointer; font-family:'Space Grotesk',sans-serif;
+    opacity:0; transition:opacity 0.2s;
+  }
+  .card:hover .banner-edit-btn { opacity:1; }
+  .banner-edit-btn:hover { background:var(--accent); border-color:var(--accent); color:#fff; }
 
-  /* ── LAUNCH STRIP (new) ── */
-  .launch-strip {
-    display: flex;
-    gap: 0.4rem;
-    padding: 0.6rem 1rem;
-    background: rgba(108,99,255,0.05);
-    border-bottom: 1px solid var(--border);
-    flex-wrap: wrap;
-    min-height: 40px;
-    align-items: center;
-  }
-  .launch-chip {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.35rem;
-    padding: 0.25rem 0.7rem;
-    border-radius: 20px;
-    font-size: 0.76rem;
-    font-weight: 500;
-    text-decoration: none;
-    transition: all 0.15s;
-    border: 1px solid transparent;
-    cursor: pointer;
-  }
-  .launch-chip.live {
-    background: rgba(34,211,160,0.1);
-    color: var(--green);
-    border-color: rgba(34,211,160,0.25);
-  }
-  .launch-chip.live:hover { background: rgba(34,211,160,0.22); }
-  .launch-chip.github {
-    background: rgba(167,139,250,0.1);
-    color: var(--accent2);
-    border-color: rgba(167,139,250,0.25);
-  }
-  .launch-chip.github:hover { background: rgba(167,139,250,0.22); }
-  .launch-chip.npm {
-    background: rgba(245,158,11,0.1);
-    color: var(--yellow);
-    border-color: rgba(245,158,11,0.25);
-  }
-  .launch-chip.npm:hover { background: rgba(245,158,11,0.22); }
-  .launch-chip.docs {
-    background: rgba(56,189,248,0.1);
-    color: #38bdf8;
-    border-color: rgba(56,189,248,0.25);
-  }
-  .launch-chip.docs:hover { background: rgba(56,189,248,0.22); }
-  .launch-chip.other {
-    background: var(--surface2);
-    color: var(--muted);
-    border-color: var(--border);
-  }
-  .launch-chip.other:hover { color: var(--text); border-color: var(--accent); }
-  .launch-chip .chip-arrow { font-size: 0.65rem; opacity: 0.7; }
-  .no-links-hint {
-    font-size: 0.75rem;
-    color: var(--muted);
-    font-style: italic;
-    padding: 0 0.25rem;
-  }
-
-  .card-body { padding: 1.1rem; flex: 1; display: flex; flex-direction: column; gap: 0.7rem; }
-
-  .card-top { display: flex; align-items: flex-start; justify-content: space-between; gap: 0.5rem; }
+  /* ── CARD BODY ── */
+  .card-body { padding:1.1rem; flex:1; display:flex; flex-direction:column; gap:0.65rem; }
+  .card-top { display:flex; align-items:flex-start; justify-content:space-between; gap:0.5rem; }
   .card-icon {
-    width: 40px; height: 40px; border-radius: 10px;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 1.2rem; flex-shrink: 0;
+    width:38px; height:38px; border-radius:9px;
+    display:flex; align-items:center; justify-content:center;
+    font-size:1.1rem; flex-shrink:0;
   }
-  .card-title-wrap { flex: 1; }
+  .card-title-wrap { flex:1; }
   .card-title {
-    font-size: 0.97rem; font-weight: 600; color: var(--text);
-    line-height: 1.3; cursor: pointer;
+    font-size:0.95rem; font-weight:600; color:var(--text); line-height:1.3;
+    outline:none; min-width:60px;
   }
-  .card-title:hover { color: var(--accent2); }
+  .card-title:focus { color:var(--accent2); }
   .card-version {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.68rem; color: var(--muted); margin-top: 2px;
+    font-family:'JetBrains Mono',monospace; font-size:0.66rem;
+    color:var(--muted); margin-top:2px; outline:none; min-width:30px;
   }
   .card-desc {
-    font-size: 0.865rem; color: var(--muted); line-height: 1.6; cursor: pointer;
+    font-size:0.855rem; color:var(--muted); line-height:1.6;
+    outline:none; min-width:60px; min-height:18px;
   }
-  .card-desc:hover { color: var(--text); }
-  .card-tags { display: flex; flex-wrap: wrap; gap: 0.35rem; }
+  .card-tags { display:flex; flex-wrap:wrap; gap:0.35rem; align-items:center; }
   .tag {
-    padding: 0.18rem 0.55rem; border-radius: 5px;
-    font-size: 0.7rem; font-weight: 500;
-    background: var(--surface2); border: 1px solid var(--border);
-    color: var(--muted); cursor: default;
+    padding:0.17rem 0.52rem; border-radius:5px; font-size:0.69rem; font-weight:500;
+    background:var(--surface2); border:1px solid var(--border); color:var(--muted);
   }
+  .add-tag-btn {
+    padding:0.17rem 0.52rem; border-radius:5px; font-size:0.69rem; font-weight:500;
+    background:transparent; border:1px dashed var(--border); color:var(--muted);
+    cursor:pointer; font-family:'Space Grotesk',sans-serif; transition:all 0.15s;
+  }
+  .add-tag-btn:hover { border-color:var(--accent); color:var(--accent2); }
+  .tag-editable { cursor:pointer; }
+  .tag-editable:hover { border-color:var(--red); color:var(--red); }
 
+  /* ── LINKS ROW ── */
+  .card-links { display:flex; gap:0.4rem; flex-wrap:wrap; align-items:center; }
+  .link-chip {
+    display:inline-flex; align-items:center; gap:0.3rem;
+    padding:0.25rem 0.65rem; border-radius:20px; font-size:0.75rem; font-weight:500;
+    text-decoration:none; border:1px solid var(--border); background:transparent;
+    color:var(--muted); cursor:pointer; transition:all 0.15s; font-family:'Space Grotesk',sans-serif;
+  }
+  .link-chip:hover { border-color:var(--accent); color:var(--accent2); }
+  .link-chip.live { border-color:rgba(34,211,160,0.3); color:var(--green); }
+  .link-chip.live:hover { background:rgba(34,211,160,0.1); }
+  .link-chip.github { border-color:rgba(167,139,250,0.3); color:var(--accent2); }
+  .link-chip.github:hover { background:rgba(167,139,250,0.1); }
+  .link-chip.npm { border-color:rgba(245,158,11,0.3); color:var(--yellow); }
+  .link-chip.npm:hover { background:rgba(245,158,11,0.1); }
+  .link-chip.docs { border-color:rgba(56,189,248,0.3); color:#38bdf8; }
+  .link-chip.docs:hover { background:rgba(56,189,248,0.1); }
+  .add-link-chip {
+    display:inline-flex; align-items:center; gap:0.3rem;
+    padding:0.25rem 0.65rem; border-radius:20px; font-size:0.75rem;
+    border:1px dashed var(--border); color:var(--muted); cursor:pointer;
+    background:transparent; font-family:'Space Grotesk',sans-serif; transition:all 0.15s;
+  }
+  .add-link-chip:hover { border-color:var(--accent); color:var(--accent2); }
+
+  /* ── CARD FOOTER ── */
   .card-footer {
-    display: flex; align-items: center; justify-content: space-between;
-    padding-top: 0.7rem; border-top: 1px solid var(--border); margin-top: auto;
+    display:flex; align-items:center; justify-content:space-between;
+    padding-top:0.65rem; border-top:1px solid var(--border); margin-top:auto;
   }
-  .card-actions { display: flex; gap: 0.45rem; align-items: center; }
-
+  .card-actions { display:flex; gap:0.4rem; align-items:center; }
   .like-btn {
-    display: flex; align-items: center; gap: 0.4rem;
-    background: transparent; border: 1px solid var(--border);
-    color: var(--muted); padding: 0.3rem 0.7rem; border-radius: 6px;
-    font-size: 0.78rem; cursor: pointer; font-family: 'Space Grotesk', sans-serif;
-    transition: all 0.2s; font-weight: 500;
+    display:flex; align-items:center; gap:0.38rem;
+    background:transparent; border:1px solid var(--border); color:var(--muted);
+    padding:0.28rem 0.65rem; border-radius:6px; font-size:0.77rem;
+    cursor:pointer; font-family:'Space Grotesk',sans-serif; transition:all 0.2s; font-weight:500;
   }
-  .like-btn:hover { border-color: var(--red); color: var(--red); }
-  .like-btn.liked { border-color: var(--red); color: var(--red); background: rgba(255,107,107,0.08); }
-  .like-btn .heart { transition: transform 0.2s; }
-  .like-btn.liked .heart { transform: scale(1.25); }
-
-  .edit-btn {
-    display: flex; align-items: center; gap: 0.35rem;
-    background: transparent; border: 1px solid var(--border);
-    color: var(--muted); padding: 0.3rem 0.7rem; border-radius: 6px;
-    font-size: 0.78rem; cursor: pointer; font-family: 'Space Grotesk', sans-serif;
-    transition: all 0.15s; font-weight: 500;
+  .like-btn:hover { border-color:var(--red); color:var(--red); }
+  .like-btn.liked { border-color:var(--red); color:var(--red); background:rgba(255,107,107,0.08); }
+  .like-btn.liked .heart { transform:scale(1.3); display:inline-block; }
+  .edit-card-btn {
+    display:flex; align-items:center; gap:0.3rem;
+    background:transparent; border:1px solid var(--border); color:var(--muted);
+    padding:0.28rem 0.65rem; border-radius:6px; font-size:0.77rem;
+    cursor:pointer; font-family:'Space Grotesk',sans-serif; transition:all 0.15s; font-weight:500;
   }
-  .edit-btn:hover { border-color: var(--accent2); color: var(--accent2); }
-
+  .edit-card-btn:hover { border-color:var(--accent2); color:var(--accent2); }
   .customize-btn {
-    display: flex; align-items: center; gap: 0.4rem;
-    background: linear-gradient(135deg, rgba(108,99,255,0.12), rgba(167,139,250,0.08));
-    border: 1px solid rgba(108,99,255,0.35);
-    color: var(--accent2); padding: 0.3rem 0.8rem; border-radius: 6px;
-    font-size: 0.78rem; cursor: pointer; font-family: 'Space Grotesk', sans-serif;
-    transition: all 0.15s; font-weight: 500;
+    display:flex; align-items:center; gap:0.35rem;
+    background:linear-gradient(135deg,rgba(108,99,255,0.12),rgba(167,139,250,0.08));
+    border:1px solid rgba(108,99,255,0.35); color:var(--accent2);
+    padding:0.28rem 0.75rem; border-radius:6px; font-size:0.77rem;
+    cursor:pointer; font-family:'Space Grotesk',sans-serif; transition:all 0.15s; font-weight:500;
   }
-  .customize-btn:hover { background: linear-gradient(135deg, rgba(108,99,255,0.25), rgba(167,139,250,0.15)); }
+  .customize-btn:hover { background:linear-gradient(135deg,rgba(108,99,255,0.25),rgba(167,139,250,0.15)); }
 
   /* ── ADD CARD ── */
   .add-card {
-    border: 2px dashed var(--border); background: transparent;
-    border-radius: 14px; display: flex; flex-direction: column;
-    align-items: center; justify-content: center;
-    gap: 0.85rem; cursor: pointer; min-height: 320px;
-    transition: all 0.2s; color: var(--muted);
+    border:2px dashed var(--border); background:transparent; border-radius:14px;
+    display:flex; flex-direction:column; align-items:center; justify-content:center;
+    gap:0.8rem; cursor:pointer; min-height:340px;
+    transition:all 0.2s; color:var(--muted);
   }
-  .add-card:hover { border-color: var(--accent); color: var(--accent2); transform: translateY(-3px); }
-  .add-card svg { width: 36px; height: 36px; opacity: 0.45; }
-  .add-card span { font-size: 0.88rem; font-weight: 500; }
+  .add-card:hover { border-color:var(--accent); color:var(--accent2); transform:translateY(-3px); }
+  .add-card svg { width:34px; height:34px; opacity:0.4; }
+  .add-card span { font-size:0.875rem; font-weight:500; }
 
   /* ── MODAL ── */
   .modal-overlay {
-    position: fixed; inset: 0;
-    background: rgba(0,0,0,0.75); backdrop-filter: blur(4px);
-    z-index: 200; display: flex; align-items: center; justify-content: center;
-    padding: 1rem; opacity: 0; pointer-events: none; transition: opacity 0.2s;
+    position:fixed; inset:0; background:rgba(0,0,0,0.78);
+    backdrop-filter:blur(5px); z-index:200;
+    display:flex; align-items:center; justify-content:center; padding:1rem;
+    opacity:0; pointer-events:none; transition:opacity 0.2s;
   }
-  .modal-overlay.open { opacity: 1; pointer-events: all; }
+  .modal-overlay.open { opacity:1; pointer-events:all; }
   .modal {
-    background: var(--surface); border: 1px solid var(--border);
-    border-radius: 16px; width: 100%; max-width: 580px;
-    max-height: 90vh; overflow-y: auto; padding: 2rem;
-    transform: translateY(20px); transition: transform 0.2s;
+    background:var(--surface); border:1px solid var(--border);
+    border-radius:16px; width:100%; max-width:560px;
+    max-height:90vh; overflow-y:auto; padding:1.85rem;
+    transform:translateY(20px); transition:transform 0.2s;
   }
-  .modal-overlay.open .modal { transform: translateY(0); }
+  .modal-overlay.open .modal { transform:translateY(0); }
   .modal-header {
-    display: flex; align-items: center; justify-content: space-between; margin-bottom: 1.5rem;
+    display:flex; align-items:center; justify-content:space-between; margin-bottom:1.4rem;
   }
-  .modal-header h2 { font-size: 1.15rem; font-weight: 600; }
+  .modal-header h2 { font-size:1.1rem; font-weight:600; }
   .close-btn {
-    background: transparent; border: 1px solid var(--border); color: var(--muted);
-    width: 32px; height: 32px; border-radius: 8px; cursor: pointer;
-    font-size: 1rem; display: flex; align-items: center; justify-content: center;
-    transition: all 0.15s; flex-shrink: 0;
+    background:transparent; border:1px solid var(--border); color:var(--muted);
+    width:30px; height:30px; border-radius:7px; cursor:pointer; font-size:0.95rem;
+    display:flex; align-items:center; justify-content:center; transition:all 0.15s;
   }
-  .close-btn:hover { color: var(--text); border-color: var(--red); }
+  .close-btn:hover { color:var(--text); border-color:var(--red); }
 
-  .form-group { margin-bottom: 1.2rem; }
+  .form-group { margin-bottom:1.1rem; }
   .form-group label {
-    display: block; font-size: 0.79rem; font-weight: 500; color: var(--muted);
-    margin-bottom: 0.45rem; text-transform: uppercase; letter-spacing: 0.05em;
+    display:block; font-size:0.77rem; font-weight:500; color:var(--muted);
+    margin-bottom:0.42rem; text-transform:uppercase; letter-spacing:0.05em;
   }
   .form-group input, .form-group textarea, .form-group select {
-    width: 100%; background: var(--surface2); border: 1px solid var(--border);
-    border-radius: 8px; padding: 0.6rem 0.9rem; color: var(--text);
-    font-family: 'Space Grotesk', sans-serif; font-size: 0.88rem;
-    outline: none; transition: border-color 0.15s; resize: vertical;
+    width:100%; background:var(--surface2); border:1px solid var(--border);
+    border-radius:8px; padding:0.58rem 0.88rem; color:var(--text);
+    font-family:'Space Grotesk',sans-serif; font-size:0.875rem;
+    outline:none; transition:border-color 0.15s; resize:vertical;
   }
-  .form-group input:focus, .form-group textarea:focus, .form-group select:focus { border-color: var(--accent); }
-  .form-group textarea { min-height: 85px; }
-  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+  .form-group input:focus, .form-group textarea:focus, .form-group select:focus { border-color:var(--accent); }
+  .form-group textarea { min-height:82px; }
+  .form-row { display:grid; grid-template-columns:1fr 1fr; gap:1rem; }
 
-  .upload-zone {
-    border: 2px dashed var(--border); border-radius: 10px;
-    padding: 1.75rem; text-align: center; cursor: pointer;
-    transition: all 0.15s; color: var(--muted); font-size: 0.855rem;
+  /* Color & Glow pickers */
+  .swatch-row { display:flex; gap:0.45rem; flex-wrap:wrap; }
+  .swatch {
+    width:28px; height:28px; border-radius:7px; cursor:pointer;
+    border:2px solid transparent; transition:transform 0.15s,border-color 0.15s;
   }
-  .upload-zone:hover { border-color: var(--accent); color: var(--accent2); }
-  .upload-zone svg { margin: 0 auto 0.5rem; display: block; opacity: 0.45; }
-  .upload-zone input { display: none; }
+  .swatch:hover, .swatch.sel { transform:scale(1.18); border-color:#fff; }
 
-  .media-preview-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 0.5rem; margin-top: 0.7rem; }
-  .media-preview-item {
-    position: relative; aspect-ratio: 16/9;
-    background: var(--surface2); border-radius: 6px; overflow: hidden;
-  }
-  .media-preview-item img, .media-preview-item video { width:100%;height:100%;object-fit:cover; }
-  .media-remove {
-    position: absolute; top: 3px; right: 3px;
-    background: rgba(255,107,107,0.85); border: none;
-    width: 20px; height: 20px; border-radius: 4px; cursor: pointer;
-    color: #fff; font-size: 0.68rem;
-    display: flex; align-items: center; justify-content: center;
-  }
-
-  .links-list { display: flex; flex-direction: column; gap: 0.55rem; }
-  .link-row { display: flex; gap: 0.5rem; }
-  .link-row select { width: 110px; flex-shrink: 0; }
-  .link-row input { flex: 1; }
-  .add-link-btn {
-    background: transparent; border: 1px dashed var(--border); border-radius: 8px;
-    padding: 0.5rem; color: var(--muted); cursor: pointer;
-    font-family: 'Space Grotesk', sans-serif; font-size: 0.8rem;
-    width: 100%; margin-top: 0.45rem; transition: all 0.15s;
-  }
-  .add-link-btn:hover { border-color: var(--accent); color: var(--accent2); }
-
-  .color-swatch-row { display: flex; gap: 0.5rem; flex-wrap: wrap; }
-  .color-swatch {
-    width: 30px; height: 30px; border-radius: 7px; cursor: pointer;
-    border: 2px solid transparent; transition: transform 0.15s, border-color 0.15s;
-  }
-  .color-swatch:hover, .color-swatch.selected { transform: scale(1.15); border-color: #fff; }
-
-  .emoji-row { display: flex; gap: 0.45rem; flex-wrap: wrap; }
+  .emoji-row { display:flex; gap:0.4rem; flex-wrap:wrap; }
   .emoji-opt {
-    width: 36px; height: 36px; border-radius: 8px;
-    background: var(--surface2); border: 2px solid var(--border);
-    cursor: pointer; font-size: 1.05rem;
-    display: flex; align-items: center; justify-content: center; transition: all 0.15s;
+    width:34px; height:34px; border-radius:7px;
+    background:var(--surface2); border:2px solid var(--border);
+    cursor:pointer; font-size:1rem;
+    display:flex; align-items:center; justify-content:center; transition:all 0.15s;
   }
-  .emoji-opt:hover, .emoji-opt.selected { border-color: var(--accent); background: rgba(108,99,255,0.15); }
+  .emoji-opt:hover, .emoji-opt.sel { border-color:var(--accent); background:rgba(108,99,255,0.15); }
+
+  /* Links in modal */
+  .modal-links-list { display:flex; flex-direction:column; gap:0.5rem; }
+  .modal-link-row { display:flex; gap:0.45rem; }
+  .modal-link-row select { width:105px; flex-shrink:0; }
+  .modal-link-row input { flex:1; }
+  .add-link-row-btn {
+    background:transparent; border:1px dashed var(--border); border-radius:8px;
+    padding:0.45rem; color:var(--muted); cursor:pointer;
+    font-family:'Space Grotesk',sans-serif; font-size:0.79rem;
+    width:100%; margin-top:0.4rem; transition:all 0.15s;
+  }
+  .add-link-row-btn:hover { border-color:var(--accent); color:var(--accent2); }
 
   .modal-footer {
-    display: flex; justify-content: flex-end; gap: 0.7rem;
-    margin-top: 1.5rem; padding-top: 1.2rem; border-top: 1px solid var(--border);
+    display:flex; justify-content:space-between; align-items:center;
+    gap:0.7rem; margin-top:1.4rem; padding-top:1.1rem; border-top:1px solid var(--border);
   }
+  .modal-footer-right { display:flex; gap:0.7rem; }
+  .del-card-btn {
+    display:flex; align-items:center; gap:0.35rem;
+    background:transparent; border:1px solid rgba(255,107,107,0.35);
+    color:var(--red); padding:0.38rem 0.8rem; border-radius:8px;
+    font-size:0.8rem; cursor:pointer; font-family:'Space Grotesk',sans-serif; transition:all 0.15s;
+  }
+  .del-card-btn:hover { background:rgba(255,107,107,0.1); }
 
+  /* Email modal */
   .email-hint {
-    font-size: 0.865rem; color: var(--muted);
-    background: var(--surface2); border: 1px solid var(--border);
-    border-radius: 8px; padding: 0.8rem 1rem; line-height: 1.55;
-    margin-bottom: 1.2rem;
+    font-size:0.855rem; color:var(--muted);
+    background:var(--surface2); border:1px solid var(--border);
+    border-radius:8px; padding:0.78rem 1rem; line-height:1.55; margin-bottom:1.1rem;
   }
-  .email-hint strong { color: var(--accent2); }
+  .email-hint strong { color:var(--accent2); }
+
+  /* Hub settings */
+  .settings-section-title {
+    font-size:0.72rem; font-weight:600; color:var(--accent2);
+    text-transform:uppercase; letter-spacing:0.08em;
+    margin:1.2rem 0 0.7rem; padding-top:1rem;
+    border-top:1px solid var(--border);
+  }
+  .settings-section-title:first-of-type { margin-top:0; padding-top:0; border-top:none; }
 
   /* ── TOAST ── */
   #toast {
-    position: fixed; bottom: 2rem; right: 2rem;
-    background: var(--surface2); border: 1px solid var(--border);
-    border-radius: 10px; padding: 0.8rem 1.2rem; font-size: 0.855rem; font-weight: 500;
-    z-index: 999; transform: translateY(20px); opacity: 0; transition: all 0.3s;
-    display: flex; align-items: center; gap: 0.6rem;
+    position:fixed; bottom:2rem; right:2rem;
+    background:var(--surface2); border:1px solid var(--border);
+    border-radius:10px; padding:0.78rem 1.15rem; font-size:0.845rem; font-weight:500;
+    z-index:999; transform:translateY(20px); opacity:0; transition:all 0.3s;
   }
-  #toast.show { transform: translateY(0); opacity: 1; }
-  #toast.success { border-color: var(--green); color: var(--green); }
-  #toast.error { border-color: var(--red); color: var(--red); }
+  #toast.show { transform:translateY(0); opacity:1; }
+  #toast.success { border-color:var(--green); color:var(--green); }
+  #toast.error { border-color:var(--red); color:var(--red); }
 
-  ::-webkit-scrollbar { width: 6px; }
-  ::-webkit-scrollbar-track { background: var(--bg); }
-  ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+  /* ── LINK MODAL ── */
+  #linkModal .modal { max-width:420px; }
 
-  @media (max-width: 640px) {
-    .grid { grid-template-columns: 1fr; }
-    .form-row { grid-template-columns: 1fr; }
-    header { padding: 0 1rem; }
-    .hero { padding: 2rem 1rem 1.5rem; }
-    .grid-container, .quick-access-section, .controls-bar { padding-left: 1rem; padding-right: 1rem; }
-    .qa-row { gap: 0.4rem; }
+  ::-webkit-scrollbar { width:5px; }
+  ::-webkit-scrollbar-track { background:var(--bg); }
+  ::-webkit-scrollbar-thumb { background:var(--border); border-radius:3px; }
+
+  @media(max-width:640px){
+    .grid { grid-template-columns:1fr; }
+    .form-row { grid-template-columns:1fr; }
+    header { padding:0 1rem; }
+    .logo-tagline { display:none; }
+    .hero { padding:2rem 1rem 1.5rem; }
+    .grid-container,.quick-section,.controls-bar { padding-left:1rem; padding-right:1rem; }
   }
 </style>
 </head>
 <body>
 
-<!-- HEADER -->
+<!-- ══ HEADER ══ -->
 <header>
-  <div class="logo">dev<span>launch</span>.io</div>
+  <div class="logo-wrap">
+    <div class="logo" id="siteLogo" contenteditable="true" spellcheck="false">FamilySoftwares</div>
+    <div class="logo-tagline" id="siteTagline" contenteditable="true" spellcheck="false">By Tarkesh</div>
+  </div>
   <div class="header-actions">
-    <button class="btn btn-ghost btn-sm" onclick="openCustomize()">⚙ Customize Hub</button>
-    <button class="btn btn-primary btn-sm" onclick="openAdd()">+ Add Software</button>
+    <button class="btn btn-ghost btn-sm" onclick="openModal(&#39;hubModal&#39;)"></button>
+    <button class="btn btn-primary btn-sm" onclick="openNewCard()"></button>
   </div>
 </header>
 
-<!-- HERO -->
+<!-- ══ HERO ══ -->
 <section class="hero">
-  <div class="hero-eyebrow">✦ your personal software portfolio</div>
-  <h1 id="heroTitle">My Software Hub</h1>
-  <p id="heroSubtitle">All your projects, tools, and apps — organized in one place. Click any link below to launch instantly.</p>
+  <div class="hero-eyebrow" id="heroEyebrow" contenteditable="true" spellcheck="false"><br></div>
+  <h1 id="heroTitle" contenteditable="true" spellcheck="false">FamilySoftwares</h1>
+  <p id="heroDesc" contenteditable="true" spellcheck="false">IT Solutions which can help your friends and families save thier valuable time</p>
+  <div class="hero-edit-hint"></div>
 </section>
 
-<!-- ══ QUICK ACCESS SECTION ══ -->
-<div class="quick-access-section">
-  <div class="section-header">
+<!-- ══ QUICK ACCESS ══ -->
+<div class="quick-section">
+  <div class="section-hdr">
     <div class="section-label">Quick Access</div>
-    <span class="section-count" id="qaCount">0 links</span>
+    <span class="section-count" id="qaCount">6 links</span>
   </div>
   <div class="qa-row" id="qaRow">
-    <!-- Pills injected by JS -->
-    <span style="font-size:0.8rem;color:var(--muted);font-style:italic;">Add software with links to see them here →</span>
-  </div>
+    <a href="https://tarkeshstack.github.io/birthdayinviation/" target="_blank" class="qa-pill">
+      <span class="pill-icon">🚀</span>
+      <span>BirthDay Card Maker</span>
+      <span class="pill-type">🌐 Live</span>
+      <span class="pill-arrow">↗</span>
+    </a>
+    <a href="https://tarkeshstack.github.io/wordgame/" target="_blank" class="qa-pill">
+      <span class="pill-icon">🚀</span>
+      <span>Know your ABCD</span>
+      <span class="pill-type">🌐 Live</span>
+      <span class="pill-arrow">↗</span>
+    </a>
+    <a href="https://tarkeshstack.github.io/emergencycard/" target="_blank" class="qa-pill">
+      <span class="pill-icon">🛠️</span>
+      <span>Your Emergency Card Maker</span>
+      <span class="pill-type">🌐 Live</span>
+      <span class="pill-arrow">↗</span>
+    </a>
+    <a href="https://tarkeshstack.github.io/Appley/" target="_blank" class="qa-pill">
+      <span class="pill-icon">🛠️</span>
+      <span>Appley- Search App Easily</span>
+      <span class="pill-type">🌐 Live</span>
+      <span class="pill-arrow">↗</span>
+    </a>
+    <a href="https://tarkeshstack.github.io/pwdgen/" target="_blank" class="qa-pill">
+      <span class="pill-icon">🛠️</span>
+      <span>Password Generator</span>
+      <span class="pill-type">🌐 Live</span>
+      <span class="pill-arrow">↗</span>
+    </a>
+    <a href="https://tarkeshstack.github.io/Msweb/" target="_blank" class="qa-pill">
+      <span class="pill-icon">🌐</span>
+      <span>Playground for Webpages</span>
+      <span class="pill-type">🌐 Live</span>
+      <span class="pill-arrow">↗</span>
+    </a></div>
 </div>
 
-<!-- CONTROLS -->
+<!-- ══ CONTROLS ══ -->
 <div class="controls-bar">
   <div class="search-wrap">
-    <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+    <svg width="15" height="15" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><path d="m21 21-4.35-4.35"></path></svg>
     <input type="text" id="searchInput" placeholder="Search software…" oninput="filterCards()">
   </div>
-  <div class="controls-right">
-    <select class="sort-select" onchange="sortCards(this.value)">
-      <option value="default">Sort: Default</option>
-      <option value="alpha">A → Z</option>
-      <option value="likes">Most Liked</option>
-    </select>
-  </div>
+  <select class="sort-select" onchange="sortCards(this.value)">
+    <option value="default">Sort: Default</option>
+    <option value="alpha">A → Z</option>
+    <option value="likes">Most Liked</option>
+  </select>
 </div>
 
-<!-- GRID -->
+<!-- ══ GRID ══ -->
 <div class="grid-container">
   <div class="grid" id="softwareGrid">
 
-    <!-- CARD 1 -->
-    <div class="card" data-id="1" data-name="LaunchPad CRM" data-likes="24">
-      <div class="card-media" onclick="openMediaModal(0)">
-        <div class="media-placeholder">
-          <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="m9 9 6 3-6 3V9z"/></svg>
-          <span>Click to view media</span>
+    <!-- SAMPLE CARD 1 -->
+    <div class="card" data-id="1" data-likes="24" data-url="https://tarkeshstack.github.io/birthdayinviation/" data-name="BirthDay Card Maker" style="--card-glow:rgba(108,99,255,0.22);">
+      <div class="launch-banner" onclick="launchCard(this)">
+        <div class="launch-banner-grid"></div>
+        <div class="play-btn">
+          <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"></path></svg>
         </div>
-        <div class="media-badge">App</div>
-        <button class="media-upload-btn" onclick="event.stopPropagation(); openEdit(0)">
-          <svg width="12" height="12" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
-          Upload Media
-        </button>
-      </div>
-      <!-- LAUNCH STRIP -->
-      <div class="launch-strip" id="strip-0">
-        <a href="#" class="launch-chip live" target="_blank">🌐 Live Demo <span class="chip-arrow">↗</span></a>
-        <a href="#" class="launch-chip github" target="_blank">⌥ GitHub <span class="chip-arrow">↗</span></a>
+        <div class="launch-name">BirthDay Card Maker</div>
+        <div class="launch-url-label">tarkeshstack.github.io</div>
+        <div class="banner-cat-badge">App</div>
+        <button class="banner-edit-btn" onclick="event.stopPropagation(); openEditCard(0)">✎ Edit</button>
       </div>
       <div class="card-body">
         <div class="card-top">
           <div class="card-icon" style="background:rgba(108,99,255,0.2);">🚀</div>
           <div class="card-title-wrap">
-            <div class="card-title" onclick="openEdit(0)">LaunchPad CRM</div>
-            <div class="card-version">v2.4.1</div>
+            <div class="card-title" contenteditable="true" spellcheck="false" onblur="syncCardName(this)">BirthDay Card Maker</div>
+            <div class="card-version" contenteditable="true" spellcheck="false">1.0</div>
           </div>
         </div>
-        <div class="card-desc" onclick="openEdit(0)">A sleek customer relationship manager built for indie makers. Tracks leads, deals, and follow-ups without the enterprise bloat.</div>
-        <div class="card-tags">
-          <span class="tag">CRM</span><span class="tag">SaaS</span><span class="tag">React</span>
-        </div>
+        <div class="card-desc" contenteditable="true" spellcheck="false">This will help to make invitation card for yours or your beloved birthday. Just Click and Share.</div>
+        <div class="card-tags"><span class="tag tag-editable" onclick="removeTag(this)" title="Click to remove">Birthday</span><span class="tag tag-editable" onclick="removeTag(this)" title="Click to remove">Card</span><span class="tag tag-editable" onclick="removeTag(this)" title="Click to remove">Make</span><button class="add-tag-btn" onclick="addTagInline(this)">+ tag</button></div>
+        <div class="card-links"><a href="https://tarkeshstack.github.io/birthdayinviation/" class="link-chip live" target="_blank">🌐 Live</a><button class="add-link-chip" onclick="openAddLink(this.closest(&#39;.card&#39;))">+ link</button></div>
         <div class="card-footer">
           <div class="card-actions">
-            <button class="like-btn" onclick="toggleLike(this)">
-              <span class="heart">♡</span> <span class="like-count">24</span>
-            </button>
-            <button class="edit-btn" onclick="openEdit(0)">✎ Edit</button>
+            <button class="like-btn" onclick="toggleLike(this)"><span class="heart">♡</span> <span class="like-count">24</span></button>
+            <button class="edit-card-btn" onclick="openEditCard(0)">✎ Edit</button>
           </div>
-          <button class="customize-btn" onclick="openCustomizeEmail('LaunchPad CRM')">✦ Customize More</button>
+          <button class="customize-btn" onclick="openCustomizeEmail(&#39;LaunchPad CRM&#39;)">✦ Customize More</button>
         </div>
       </div>
     </div>
 
-    <!-- CARD 2 -->
-    <div class="card" data-id="2" data-name="AutoScript CLI" data-likes="11">
-      <div class="card-media" onclick="openMediaModal(1)">
-        <div class="media-placeholder">
-          <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="m9 9 6 3-6 3V9z"/></svg>
-          <span>Click to view media</span>
+    <!-- SAMPLE CARD 2 -->
+    <div class="card" data-id="2" data-likes="11" data-url="https://tarkeshstack.github.io/wordgame/" data-name="Know your ABCD" style="--card-glow: rgba(34,211,160,0.22);">
+      <div class="launch-banner" onclick="launchCard(this)">
+        <div class="launch-banner-grid"></div>
+        <div class="play-btn">
+          <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"></path></svg>
         </div>
-        <div class="media-badge">Tool</div>
-        <button class="media-upload-btn" onclick="event.stopPropagation(); openEdit(1)">
-          <svg width="12" height="12" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
-          Upload Media
-        </button>
-      </div>
-      <div class="launch-strip" id="strip-1">
-        <a href="#" class="launch-chip github" target="_blank">⌥ GitHub <span class="chip-arrow">↗</span></a>
-        <a href="#" class="launch-chip npm" target="_blank">📦 npm <span class="chip-arrow">↗</span></a>
+        <div class="launch-name">Know your ABCD</div>
+        <div class="launch-url-label">tarkeshstack.github.io</div>
+        <div class="banner-cat-badge">App</div>
+        <button class="banner-edit-btn" onclick="event.stopPropagation(); openEditCard(1)">✎ Edit</button>
       </div>
       <div class="card-body">
         <div class="card-top">
-          <div class="card-icon" style="background:rgba(34,211,160,0.2);">⚡</div>
+          <div class="card-icon" style="background: rgba(108, 99, 255, 0.2);">🚀</div>
           <div class="card-title-wrap">
-            <div class="card-title" onclick="openEdit(1)">AutoScript CLI</div>
-            <div class="card-version">v1.0.3</div>
+            <div class="card-title" contenteditable="true" spellcheck="false" onblur="syncCardName(this)">Know your ABCD</div>
+            <div class="card-version" contenteditable="true" spellcheck="false">1.0</div>
           </div>
         </div>
-        <div class="card-desc" onclick="openEdit(1)">Command-line automation toolkit for devs. Batch rename, convert, scaffold, and deploy with simple shell commands.</div>
-        <div class="card-tags">
-          <span class="tag">CLI</span><span class="tag">Node.js</span><span class="tag">DevOps</span>
-        </div>
+        <div class="card-desc" contenteditable="true" spellcheck="false">A simple , fun and easy way to practice alphabets for your little ones. Check it out. Education app you can rely on. No ads.</div>
+        <div class="card-tags"><span class="tag tag-editable" onclick="removeTag(this)" title="Click to remove">ABCD</span><span class="tag tag-editable" onclick="removeTag(this)" title="Click to remove">aplhabets</span><button class="add-tag-btn" onclick="addTagInline(this)">+ tag</button></div>
+        <div class="card-links"><a href="https://tarkeshstack.github.io/wordgame/" class="link-chip live" target="_blank">🌐 Live</a><button class="add-link-chip" onclick="openAddLink(this.closest(&#39;.card&#39;))">+ link</button></div>
         <div class="card-footer">
           <div class="card-actions">
-            <button class="like-btn" onclick="toggleLike(this)">
-              <span class="heart">♡</span> <span class="like-count">11</span>
-            </button>
-            <button class="edit-btn" onclick="openEdit(1)">✎ Edit</button>
+            <button class="like-btn" onclick="toggleLike(this)"><span class="heart">♡</span> <span class="like-count">11</span></button>
+            <button class="edit-card-btn" onclick="openEditCard(1)">✎ Edit</button>
           </div>
-          <button class="customize-btn" onclick="openCustomizeEmail('AutoScript CLI')">✦ Customize More</button>
+          <button class="customize-btn" onclick="openCustomizeEmail(&#39;AutoScript CLI&#39;)">✦ Customize More</button>
         </div>
       </div>
     </div>
 
-    <!-- CARD 3 -->
-    <div class="card" data-id="3" data-name="NotifyFlow API" data-likes="38">
-      <div class="card-media" onclick="openMediaModal(2)">
-        <div class="media-placeholder">
-          <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="m9 9 6 3-6 3V9z"/></svg>
-          <span>Click to view media</span>
+    <!-- SAMPLE CARD 3 -->
+    <div class="card" data-id="3" data-likes="38" data-url="https://tarkeshstack.github.io/emergencycard/" data-name="Your Emergency Card Maker" style="--card-glow: rgba(255,107,107,0.22);">
+      <div class="launch-banner" onclick="launchCard(this)">
+        <div class="launch-banner-grid"></div>
+        <div class="play-btn">
+          <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"></path></svg>
         </div>
-        <div class="media-badge">API</div>
-        <button class="media-upload-btn" onclick="event.stopPropagation(); openEdit(2)">
-          <svg width="12" height="12" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
-          Upload Media
-        </button>
-      </div>
-      <div class="launch-strip" id="strip-2">
-        <a href="#" class="launch-chip live" target="_blank">🌐 Docs <span class="chip-arrow">↗</span></a>
-        <a href="#" class="launch-chip docs" target="_blank">📊 Status <span class="chip-arrow">↗</span></a>
+        <div class="launch-name">Your Emergency Card Maker</div>
+        <div class="launch-url-label">tarkeshstack.github.io</div>
+        <div class="banner-cat-badge">Tool</div>
+        <button class="banner-edit-btn" onclick="event.stopPropagation(); openEditCard(2)">✎ Edit</button>
       </div>
       <div class="card-body">
         <div class="card-top">
-          <div class="card-icon" style="background:rgba(245,158,11,0.2);">🔌</div>
+          <div class="card-icon" style="background: rgba(108, 99, 255, 0.2);">🛠️</div>
           <div class="card-title-wrap">
-            <div class="card-title" onclick="openEdit(2)">NotifyFlow API</div>
-            <div class="card-version">v3.1.0</div>
+            <div class="card-title" contenteditable="true" spellcheck="false" onblur="syncCardName(this)">Your Emergency Card Maker</div>
+            <div class="card-version" contenteditable="true" spellcheck="false">1.0</div>
           </div>
         </div>
-        <div class="card-desc" onclick="openEdit(2)">Multi-channel notification API. Send push, email, SMS, and Slack alerts from a single REST endpoint. 99.9% uptime SLA.</div>
-        <div class="card-tags">
-          <span class="tag">REST API</span><span class="tag">Notifications</span><span class="tag">Python</span>
-        </div>
+        <div class="card-desc" contenteditable="true" spellcheck="false">Your personal emergency card in need, a must have for everyone. Click to edit , save , print and keep in home.</div>
+        <div class="card-tags"><span class="tag tag-editable" onclick="removeTag(this)" title="Click to remove">emergency</span><span class="tag tag-editable" onclick="removeTag(this)" title="Click to remove">SOS</span><span class="tag tag-editable" onclick="removeTag(this)" title="Click to remove">Needful</span><button class="add-tag-btn" onclick="addTagInline(this)">+ tag</button></div>
+        <div class="card-links"><a href="https://tarkeshstack.github.io/emergencycard/" class="link-chip live" target="_blank">🌐 Live</a><button class="add-link-chip" onclick="openAddLink(this.closest(&#39;.card&#39;))">+ link</button></div>
         <div class="card-footer">
           <div class="card-actions">
-            <button class="like-btn" onclick="toggleLike(this)">
-              <span class="heart">♡</span> <span class="like-count">38</span>
-            </button>
-            <button class="edit-btn" onclick="openEdit(2)">✎ Edit</button>
+            <button class="like-btn" onclick="toggleLike(this)"><span class="heart">♡</span> <span class="like-count">38</span></button>
+            <button class="edit-card-btn" onclick="openEditCard(2)">✎ Edit</button>
           </div>
-          <button class="customize-btn" onclick="openCustomizeEmail('NotifyFlow API')">✦ Customize More</button>
+          <button class="customize-btn" onclick="openCustomizeEmail(&#39;NotifyFlow API&#39;)">✦ Customize More</button>
         </div>
       </div>
     </div>
 
     <!-- ADD NEW -->
-    <div class="add-card" onclick="openAdd()">
-      <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M12 8v8M8 12h8"/></svg>
-      <span>Add New Software</span>
+    <div class="card" data-id="4" data-name="Appley- Search App Easily" data-likes="0" data-url="https://tarkeshstack.github.io/Appley/" style="--card-glow: rgba(56,189,248,0.22);">
+      <div class="launch-banner" onclick="launchCard(this)">
+        <div class="launch-banner-grid"></div>
+        <div class="play-btn"><svg viewBox="0 0 24 24" fill="#fff"><path d="M8 5v14l11-7z"></path></svg></div>
+        <div class="launch-name">Appley- Search App Easily</div>
+        <div class="launch-url-label">tarkeshstack.github.io</div>
+        <div class="banner-cat-badge">App</div>
+        <button class="banner-edit-btn" onclick="event.stopPropagation(); openEditCardEl(this.closest(&#39;.card&#39;))">✎ Edit</button>
+      </div>
+      <div class="card-body">
+        <div class="card-top">
+          <div class="card-icon" style="background:rgba(34,211,160,0.2);">🛠️</div>
+          <div class="card-title-wrap">
+            <div class="card-title" contenteditable="true" spellcheck="false" onblur="syncCardName(this)">Appley- Search App Easily</div>
+            <div class="card-version" contenteditable="true" spellcheck="false">1.0</div>
+          </div>
+        </div>
+        <div class="card-desc" contenteditable="true" spellcheck="false">You or your loved ones don't have to be too technical to explore apps in app store. Search yours apps like taking to someone.</div>
+        <div class="card-tags"><span class="tag tag-editable" onclick="removeTag(this)" title="Click to remove">app</span><span class="tag tag-editable" onclick="removeTag(this)" title="Click to remove">search</span><span class="tag tag-editable" onclick="removeTag(this)" title="Click to remove">easily</span><button class="add-tag-btn" onclick="addTagInline(this)">+ tag</button></div>
+        <div class="card-links"><a href="https://tarkeshstack.github.io/Appley/" class="link-chip live" target="_blank">🌐 Live</a><button class="add-link-chip" onclick="openAddLink(this.closest(&#39;.card&#39;))">+ link</button></div>
+        <div class="card-footer">
+          <div class="card-actions">
+            <button class="like-btn" onclick="toggleLike(this)"><span class="heart">♡</span> <span class="like-count">0</span></button>
+            <button class="edit-card-btn" onclick="openEditCardEl(this.closest(&#39;.card&#39;))">✎ Edit</button>
+          </div>
+          <button class="customize-btn" onclick="openCustomizeEmail(&#39;Appley- Search App Easily&#39;)">✦ Customize More</button>
+        </div>
+      </div></div><div class="card" data-id="5" data-name="Password Generator" data-likes="0" data-url="https://tarkeshstack.github.io/pwdgen/" style="--card-glow: rgba(244,114,182,0.22);">
+      <div class="launch-banner" onclick="launchCard(this)">
+        <div class="launch-banner-grid"></div>
+        <div class="play-btn"><svg viewBox="0 0 24 24" fill="#fff"><path d="M8 5v14l11-7z"></path></svg></div>
+        <div class="launch-name">Password Generator</div>
+        <div class="launch-url-label">tarkeshstack.github.io</div>
+        <div class="banner-cat-badge">Tool</div>
+        <button class="banner-edit-btn" onclick="event.stopPropagation(); openEditCardEl(this.closest(&#39;.card&#39;))">✎ Edit</button>
+      </div>
+      <div class="card-body">
+        <div class="card-top">
+          <div class="card-icon" style="background:rgba(108,99,255,0.2);">🛠️</div>
+          <div class="card-title-wrap">
+            <div class="card-title" contenteditable="true" spellcheck="false" onblur="syncCardName(this)">Password Generator</div>
+            <div class="card-version" contenteditable="true" spellcheck="false">1.0</div>
+          </div>
+        </div>
+        <div class="card-desc" contenteditable="true" spellcheck="false">15 digit random collection of words for password, looks like a technical challenge, isn't it.  Not anymore, pwd gen is here to help.</div>
+        <div class="card-tags"><span class="tag tag-editable" onclick="removeTag(this)" title="Click to remove">password</span><span class="tag tag-editable" onclick="removeTag(this)" title="Click to remove">randomchars</span><span class="tag tag-editable" onclick="removeTag(this)" title="Click to remove">too tough</span><button class="add-tag-btn" onclick="addTagInline(this)">+ tag</button></div>
+        <div class="card-links"><a href="https://tarkeshstack.github.io/pwdgen/" class="link-chip live" target="_blank">🌐 Live</a><button class="add-link-chip" onclick="openAddLink(this.closest(&#39;.card&#39;))">+ link</button></div>
+        <div class="card-footer">
+          <div class="card-actions">
+            <button class="like-btn" onclick="toggleLike(this)"><span class="heart">♡</span> <span class="like-count">0</span></button>
+            <button class="edit-card-btn" onclick="openEditCardEl(this.closest(&#39;.card&#39;))">✎ Edit</button>
+          </div>
+          <button class="customize-btn" onclick="openCustomizeEmail(&#39;Password Generator&#39;)">✦ Customize More</button>
+        </div>
+      </div></div><div class="card" data-id="6" data-name="Playground for Webpages" data-likes="0" data-url="https://tarkeshstack.github.io/Msweb/" style="--card-glow: rgba(245,158,11,0.22);">
+      <div class="launch-banner" onclick="launchCard(this)">
+        <div class="launch-banner-grid"></div>
+        <div class="play-btn"><svg viewBox="0 0 24 24" fill="#fff"><path d="M8 5v14l11-7z"></path></svg></div>
+        <div class="launch-name">Playground for Webpages</div>
+        <div class="launch-url-label">tarkeshstack.github.io</div>
+        <div class="banner-cat-badge">Tool</div>
+        <button class="banner-edit-btn" onclick="event.stopPropagation(); openEditCardEl(this.closest(&#39;.card&#39;))">✎ Edit</button>
+      </div>
+      <div class="card-body">
+        <div class="card-top">
+          <div class="card-icon" style="background:rgba(255,107,107,0.2);">🌐</div>
+          <div class="card-title-wrap">
+            <div class="card-title" contenteditable="true" spellcheck="false" onblur="syncCardName(this)">Playground for Webpages</div>
+            <div class="card-version" contenteditable="true" spellcheck="false">1.0</div>
+          </div>
+        </div>
+        <div class="card-desc" contenteditable="true" spellcheck="false">Come play around the web components to convert your thoughts into webpages.</div>
+        <div class="card-tags"><span class="tag tag-editable" onclick="removeTag(this)" title="Click to remove">webpages</span><span class="tag tag-editable" onclick="removeTag(this)" title="Click to remove">html</span><span class="tag tag-editable" onclick="removeTag(this)" title="Click to remove">playground</span><button class="add-tag-btn" onclick="addTagInline(this)">+ tag</button></div>
+        <div class="card-links"><a href="https://tarkeshstack.github.io/Msweb/" class="link-chip live" target="_blank">🌐 Live</a><button class="add-link-chip" onclick="openAddLink(this.closest(&#39;.card&#39;))">+ link</button></div>
+        <div class="card-footer">
+          <div class="card-actions">
+            <button class="like-btn" onclick="toggleLike(this)"><span class="heart">♡</span> <span class="like-count">0</span></button>
+            <button class="edit-card-btn" onclick="openEditCardEl(this.closest(&#39;.card&#39;))">✎ Edit</button>
+          </div>
+          <button class="customize-btn" onclick="openCustomizeEmail(&#39;Playground for Webpages&#39;)">✦ Customize More</button>
+        </div>
+      <!-- </div></div><div class="add-card1" onclick="openNewCard1()"> -->
+      <!-- <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"></circle><path d="M12 8v8M8 12h8"></path></svg> -->
+      <!-- <span>Add New Software</span> -->
     </div>
 
   </div>
 </div>
 
-<!-- ═══ EDIT / ADD MODAL ═══ -->
+<!-- ════════════════════════════
+     CARD EDIT MODAL
+════════════════════════════ -->
 <div class="modal-overlay" id="editModal">
   <div class="modal">
     <div class="modal-header">
-      <h2 id="modalTitle">Edit Software</h2>
-      <button class="close-btn" onclick="closeModal('editModal')">✕</button>
+      <h2 id="editModalTitle">Edit Software</h2>
+      <button class="close-btn" onclick="closeModal(&#39;editModal&#39;)">✕</button>
     </div>
 
     <div class="form-row">
       <div class="form-group">
         <label>Software Name</label>
-        <input type="text" id="editName" placeholder="e.g. My Awesome App">
+        <input type="text" id="eName" placeholder="e.g. My App">
       </div>
       <div class="form-group">
         <label>Version</label>
-        <input type="text" id="editVersion" placeholder="e.g. v1.0.0">
+        <input type="text" id="eVersion" placeholder="v1.0.0">
       </div>
+    </div>
+
+    <div class="form-group">
+      <label>Launch URL (clicking the banner opens this)</label>
+      <input type="url" id="eUrl" placeholder="https://yourapp.com">
     </div>
 
     <div class="form-row">
       <div class="form-group">
-        <label>Category</label>
-        <select id="editCategory">
-          <option value="App">App</option>
-          <option value="Tool">Tool</option>
-          <option value="API">API</option>
-          <option value="Library">Library</option>
-          <option value="Game">Game</option>
-          <option value="Plugin">Plugin</option>
+        <label>Category Badge</label>
+        <select id="eCategory">
+          <option>App</option><option>Tool</option><option>API</option>
+          <option>Library</option><option>Game</option><option>Plugin</option><option>SaaS</option>
         </select>
       </div>
       <div class="form-group">
-        <label>Icon Emoji</label>
-        <div class="emoji-row" id="emojiRow">
-          <div class="emoji-opt selected" onclick="selectEmoji(this)" data-emoji="🚀">🚀</div>
-          <div class="emoji-opt" onclick="selectEmoji(this)" data-emoji="⚡">⚡</div>
-          <div class="emoji-opt" onclick="selectEmoji(this)" data-emoji="🔌">🔌</div>
-          <div class="emoji-opt" onclick="selectEmoji(this)" data-emoji="🛠️">🛠️</div>
-          <div class="emoji-opt" onclick="selectEmoji(this)" data-emoji="📦">📦</div>
-          <div class="emoji-opt" onclick="selectEmoji(this)" data-emoji="🤖">🤖</div>
-          <div class="emoji-opt" onclick="selectEmoji(this)" data-emoji="🌐">🌐</div>
-          <div class="emoji-opt" onclick="selectEmoji(this)" data-emoji="🔐">🔐</div>
-          <div class="emoji-opt" onclick="selectEmoji(this)" data-emoji="📊">📊</div>
-          <div class="emoji-opt" onclick="selectEmoji(this)" data-emoji="💡">💡</div>
+        <label>Icon</label>
+        <div class="emoji-row" id="eEmojiRow">
+          <div class="emoji-opt" onclick="pickEmoji(this)" data-e="🚀">🚀</div>
+          <div class="emoji-opt" onclick="pickEmoji(this)" data-e="⚡">⚡</div>
+          <div class="emoji-opt" onclick="pickEmoji(this)" data-e="🔌">🔌</div>
+          <div class="emoji-opt" onclick="pickEmoji(this)" data-e="🛠️">🛠️</div>
+          <div class="emoji-opt" onclick="pickEmoji(this)" data-e="📦">📦</div>
+          <div class="emoji-opt" onclick="pickEmoji(this)" data-e="🤖">🤖</div>
+          <div class="emoji-opt sel" onclick="pickEmoji(this)" data-e="🌐">🌐</div>
+          <div class="emoji-opt" onclick="pickEmoji(this)" data-e="🔐">🔐</div>
+          <div class="emoji-opt" onclick="pickEmoji(this)" data-e="📊">📊</div>
+          <div class="emoji-opt" onclick="pickEmoji(this)" data-e="💡">💡</div>
+          <div class="emoji-opt" onclick="pickEmoji(this)" data-e="🎮">🎮</div>
+          <div class="emoji-opt" onclick="pickEmoji(this)" data-e="🧩">🧩</div>
         </div>
       </div>
     </div>
 
     <div class="form-group">
       <label>Description</label>
-      <textarea id="editDesc" placeholder="What does this software do? Who is it for?"></textarea>
+      <textarea id="eDesc" placeholder="What does this do? Who is it for?"></textarea>
     </div>
 
     <div class="form-group">
       <label>Tags (comma separated)</label>
-      <input type="text" id="editTags" placeholder="React, SaaS, Open Source">
+      <input type="text" id="eTags" placeholder="React, SaaS, Open Source">
     </div>
 
     <div class="form-group">
-      <label>Icon Background Color</label>
-      <div class="color-swatch-row" id="colorSwatches">
-        <div class="color-swatch selected" data-color="rgba(108,99,255,0.2)" style="background:rgba(108,99,255,0.5);" onclick="selectColor(this)"></div>
-        <div class="color-swatch" data-color="rgba(34,211,160,0.2)" style="background:rgba(34,211,160,0.5);" onclick="selectColor(this)"></div>
-        <div class="color-swatch" data-color="rgba(245,158,11,0.2)" style="background:rgba(245,158,11,0.5);" onclick="selectColor(this)"></div>
-        <div class="color-swatch" data-color="rgba(255,107,107,0.2)" style="background:rgba(255,107,107,0.5);" onclick="selectColor(this)"></div>
-        <div class="color-swatch" data-color="rgba(167,139,250,0.2)" style="background:rgba(167,139,250,0.5);" onclick="selectColor(this)"></div>
-        <div class="color-swatch" data-color="rgba(56,189,248,0.2)" style="background:rgba(56,189,248,0.5);" onclick="selectColor(this)"></div>
+      <label>Banner Glow Color</label>
+      <div class="swatch-row" id="eGlowSwatches">
+        <div class="swatch" data-g="rgba(108,99,255,0.22)" style="background:#6c63ff" onclick="pickGlow(this)"></div>
+        <div class="swatch" data-g="rgba(34,211,160,0.22)" style="background:#22d3a0" onclick="pickGlow(this)"></div>
+        <div class="swatch sel" data-g="rgba(245,158,11,0.22)" style="background:#f59e0b" onclick="pickGlow(this)"></div>
+        <div class="swatch" data-g="rgba(255,107,107,0.22)" style="background:#ff6b6b" onclick="pickGlow(this)"></div>
+        <div class="swatch" data-g="rgba(56,189,248,0.22)" style="background:#38bdf8" onclick="pickGlow(this)"></div>
+        <div class="swatch" data-g="rgba(244,114,182,0.22)" style="background:#f472b6" onclick="pickGlow(this)"></div>
       </div>
     </div>
 
     <div class="form-group">
-      <label>Images &amp; Videos</label>
-      <div class="upload-zone" onclick="document.getElementById('mediaInput').click()">
-        <svg width="30" height="30" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
-        Click to upload images or videos
-        <input type="file" id="mediaInput" accept="image/*,video/*" multiple onchange="handleMediaUpload(event)">
+      <label>Icon Background</label>
+      <div class="swatch-row" id="eIconSwatches">
+        <div class="swatch" data-c="rgba(108,99,255,0.2)" style="background:rgba(108,99,255,0.5)" onclick="pickIconBg(this)"></div>
+        <div class="swatch" data-c="rgba(34,211,160,0.2)" style="background:rgba(34,211,160,0.5)" onclick="pickIconBg(this)"></div>
+        <div class="swatch" data-c="rgba(245,158,11,0.2)" style="background:rgba(245,158,11,0.5)" onclick="pickIconBg(this)"></div>
+        <div class="swatch sel" data-c="rgba(255,107,107,0.2)" style="background:rgba(255,107,107,0.5)" onclick="pickIconBg(this)"></div>
+        <div class="swatch" data-c="rgba(56,189,248,0.2)" style="background:rgba(56,189,248,0.5)" onclick="pickIconBg(this)"></div>
+        <div class="swatch" data-c="rgba(244,114,182,0.2)" style="background:rgba(244,114,182,0.5)" onclick="pickIconBg(this)"></div>
       </div>
-      <div class="media-preview-grid" id="mediaPreview"></div>
     </div>
 
     <div class="form-group">
-      <label>Links (shown as launch buttons on card)</label>
-      <div class="links-list" id="linksList">
-        <div class="link-row">
-          <select>
-            <option value="live">🌐 Live</option>
-            <option value="github">⌥ GitHub</option>
-            <option value="npm">📦 npm</option>
-            <option value="docs">📖 Docs</option>
-            <option value="other">📊 Other</option>
-          </select>
-          <input type="url" placeholder="https://">
-          <button class="btn btn-sm btn-danger" onclick="removeLink(this)">✕</button>
-        </div>
-      </div>
-      <button class="add-link-btn" onclick="addLink()">+ Add Another Link</button>
+      <label>Links</label>
+      <div class="modal-links-list" id="eLinks"><div class="modal-link-row">
+    <select>
+      <option value="live" selected="">🌐 Live</option>
+      <option value="github">⌥ GitHub</option>
+      <option value="npm">📦 npm</option>
+      <option value="docs">📖 Docs</option>
+      <option value="other">🔗 Other</option>
+    </select>
+    <input type="url" placeholder="https://" value="https://tarkeshstack.github.io/Msweb/">
+    <button class="btn btn-sm btn-danger" onclick="removeModalLink(this)">✕</button></div></div>
+      <button class="add-link-row-btn" onclick="addModalLink()">+ Add Link</button>
     </div>
 
     <div class="modal-footer">
-      <button class="btn btn-ghost" onclick="closeModal('editModal')">Cancel</button>
-      <button class="btn btn-primary" onclick="saveCard()">Save Changes</button>
-    </div>
-  </div>
-</div>
-
-<!-- ═══ EMAIL / CUSTOMIZE MORE MODAL ═══ -->
-<div class="modal-overlay" id="emailModal">
-  <div class="modal" style="max-width:460px;">
-    <div class="modal-header">
-      <h2>✦ Customize More</h2>
-      <button class="close-btn" onclick="closeModal('emailModal')">✕</button>
-    </div>
-    <div class="email-hint">
-      Want a custom feature, design tweak, or integration for <strong id="emailSoftwareName">this software</strong>? Send a message and we'll get back to you.
-    </div>
-    <div class="form-group">
-      <label>Your Name</label>
-      <input type="text" id="emailFrom" placeholder="John Doe">
-    </div>
-    <div class="form-group">
-      <label>Your Email</label>
-      <input type="email" id="emailReply" placeholder="you@example.com">
-    </div>
-    <div class="form-group">
-      <label>What do you need?</label>
-      <textarea id="emailBody" placeholder="Describe the customization, feature, or change you'd like…" style="min-height:110px;"></textarea>
-    </div>
-    <div class="modal-footer">
-      <button class="btn btn-ghost" onclick="closeModal('emailModal')">Cancel</button>
-      <button class="btn btn-primary" onclick="sendEmail()">Send Request ✉</button>
-    </div>
-  </div>
-</div>
-
-<!-- ═══ HUB SETTINGS MODAL ═══ -->
-<div class="modal-overlay" id="hubModal">
-  <div class="modal">
-    <div class="modal-header">
-      <h2>⚙ Customize Your Hub</h2>
-      <button class="close-btn" onclick="closeModal('hubModal')">✕</button>
-    </div>
-    <div class="form-group">
-      <label>Hub Title</label>
-      <input type="text" id="hubTitle" value="My Software Hub">
-    </div>
-    <div class="form-group">
-      <label>Subtitle / Tagline</label>
-      <textarea id="hubSubtitle" style="min-height:65px;">All your projects, tools, and apps — organized in one place. Click any link below to launch instantly.</textarea>
-    </div>
-    <div class="form-group">
-      <label>Accent Color</label>
-      <div class="color-swatch-row">
-        <div class="color-swatch selected" style="background:#6c63ff;" onclick="setAccent('#6c63ff',this)"></div>
-        <div class="color-swatch" style="background:#22d3a0;" onclick="setAccent('#22d3a0',this)"></div>
-        <div class="color-swatch" style="background:#f59e0b;" onclick="setAccent('#f59e0b',this)"></div>
-        <div class="color-swatch" style="background:#ff6b6b;" onclick="setAccent('#ff6b6b',this)"></div>
-        <div class="color-swatch" style="background:#38bdf8;" onclick="setAccent('#38bdf8',this)"></div>
-        <div class="color-swatch" style="background:#f472b6;" onclick="setAccent('#f472b6',this)"></div>
+      <button class="del-card-btn" id="delCardBtn" onclick="deleteCard()" style="display: flex;">🗑 Delete</button>
+      <div class="modal-footer-right">
+        <button class="btn btn-ghost" onclick="closeModal(&#39;editModal&#39;)">Cancel</button>
+        <button class="btn btn-primary" onclick="saveCard()">Save</button>
       </div>
     </div>
-    <div class="form-group">
-      <label>Contact Email (for Customize More requests)</label>
-      <input type="email" id="hubEmail" placeholder="you@example.com">
-    </div>
-    <div class="modal-footer">
-      <button class="btn btn-ghost" onclick="closeModal('hubModal')">Cancel</button>
-      <button class="btn btn-primary" onclick="saveHub()">Save Settings</button>
-    </div>
   </div>
 </div>
 
-<!-- ═══ MEDIA VIEWER MODAL ═══ -->
-<div class="modal-overlay" id="mediaModal">
-  <div class="modal" style="max-width:680px; padding: 1.5rem;">
+<!-- ════════════════════════════
+     ADD LINK QUICK MODAL
+════════════════════════════ -->
+<div class="modal-overlay" id="linkModal">
+  <div class="modal" style="max-width:420px;">
     <div class="modal-header">
-      <h2 id="mediaModalTitle">Media</h2>
-      <button class="close-btn" onclick="closeModal('mediaModal')">✕</button>
+      <h2>Add Link</h2>
+      <button class="close-btn" onclick="closeModal(&#39;linkModal&#39;)">✕</button>
     </div>
-    <div id="mediaModalContent" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:0.75rem;"></div>
-    <div class="modal-footer" style="margin-top:1rem;">
-      <button class="btn btn-ghost" onclick="closeModal('mediaModal')">Close</button>
-    </div>
-  </div>
-</div>
-
-<div id="toast"></div>
-
-<script>
-  // ── STATE ──
-  let editingIndex = null;
-  let selectedEmoji = '🚀';
-  let selectedColor = 'rgba(108,99,255,0.2)';
-  let mediaFiles = [];
-  let hubEmail = 'you@example.com';
-
-  // Per-card media store: cardIndex -> [{url, type}]
-  const cardMedia = { 0: [], 1: [], 2: [] };
-
-  // ── INIT: build quick access from existing cards ──
-  function buildQuickAccess() {
-    const row = document.getElementById('qaRow');
-    const cards = document.querySelectorAll('.card[data-id]');
-    const pills = [];
-
-    cards.forEach(card => {
-      const name  = card.querySelector('.card-title')?.textContent || 'Software';
-      const icon  = card.querySelector('.card-icon')?.textContent || '🔗';
-      const chips = card.querySelectorAll('.launch-strip .launch-chip');
-      chips.forEach(chip => {
-        const href = chip.getAttribute('href');
-        if (!href || href === '#') return;
-        const label = chip.textContent.replace('↗','').trim();
-        const cls   = [...chip.classList].find(c => ['live','github','npm','docs','other'].includes(c)) || 'other';
-        pills.push({ name, icon, label, href, cls });
-      });
-    });
-
-    document.getElementById('qaCount').textContent = pills.length + ' link' + (pills.length !== 1 ? 's' : '');
-
-    if (pills.length === 0) {
-      row.innerHTML = '<span style="font-size:0.8rem;color:var(--muted);font-style:italic;">Add software with links to see them here →</span>';
-      return;
-    }
-
-    row.innerHTML = pills.map(p => `
-      <a href="${p.href}" target="_blank" class="qa-pill">
-        <span class="pill-icon">${p.icon}</span>
-        <span class="pill-name">${p.name}</span>
-        <span class="pill-type">${p.label}</span>
-        <span class="pill-arrow">↗</span>
-      </a>`).join('');
-  }
-
-  // Run on load
-  buildQuickAccess();
-
-  // ── LIKE ──
-  function toggleLike(btn) {
-    const span = btn.querySelector('.like-count');
-    const heart = btn.querySelector('.heart');
-    const liked = btn.classList.toggle('liked');
-    const count = parseInt(span.textContent);
-    span.textContent = liked ? count + 1 : count - 1;
-    heart.textContent = liked ? '♥' : '♡';
-    btn.closest('.card').dataset.likes = liked ? count + 1 : count - 1;
-    showToast(liked ? '♥ Liked!' : 'Unliked', liked ? 'success' : '');
-  }
-
-  // ── SEARCH ──
-  function filterCards() {
-    const q = document.getElementById('searchInput').value.toLowerCase();
-    document.querySelectorAll('.card[data-id]').forEach(card => {
-      const title = card.querySelector('.card-title')?.textContent.toLowerCase() || '';
-      const desc  = card.querySelector('.card-desc')?.textContent.toLowerCase() || '';
-      card.style.display = (title.includes(q) || desc.includes(q)) ? '' : 'none';
-    });
-  }
-
-  // ── SORT ──
-  function sortCards(by) {
-    const grid = document.getElementById('softwareGrid');
-    const addCard = grid.querySelector('.add-card');
-    const cards = [...grid.querySelectorAll('.card[data-id]')];
-    if (by === 'alpha') {
-      cards.sort((a,b) => (a.dataset.name||'').localeCompare(b.dataset.name||''));
-    } else if (by === 'likes') {
-      cards.sort((a,b) => parseInt(b.dataset.likes||0) - parseInt(a.dataset.likes||0));
-    }
-    cards.forEach(c => grid.insertBefore(c, addCard));
-  }
-
-  // ── EMOJI / COLOR ──
-  function selectEmoji(el) {
-    document.querySelectorAll('#emojiRow .emoji-opt').forEach(e => e.classList.remove('selected'));
-    el.classList.add('selected');
-    selectedEmoji = el.dataset.emoji;
-  }
-  function selectColor(el) {
-    document.querySelectorAll('#colorSwatches .color-swatch').forEach(s => s.classList.remove('selected'));
-    el.classList.add('selected');
-    selectedColor = el.dataset.color;
-  }
-
-  // ── MEDIA UPLOAD ──
-  function handleMediaUpload(e) {
-    Array.from(e.target.files).forEach(file => {
-      const url = URL.createObjectURL(file);
-      mediaFiles.push({ url, type: file.type });
-      renderMediaPreview();
-    });
-    e.target.value = '';
-  }
-  function renderMediaPreview() {
-    document.getElementById('mediaPreview').innerHTML = mediaFiles.map((f,i) => `
-      <div class="media-preview-item">
-        ${f.type.startsWith('video') ? `<video src="${f.url}" muted></video>` : `<img src="${f.url}">`}
-        <button class="media-remove" onclick="removeMedia(${i})">✕</button>
-      </div>`).join('');
-  }
-  function removeMedia(i) { mediaFiles.splice(i,1); renderMediaPreview(); }
-
-  // ── LINKS ──
-  function addLink() {
-    const row = document.createElement('div');
-    row.className = 'link-row';
-    row.innerHTML = `
-      <select>
-        <option value="live">🌐 Live</option>
+    <div class="form-group">
+      <label>Link Type</label>
+      <select id="lType">
+        <option value="live">🌐 Live / Demo</option>
         <option value="github">⌥ GitHub</option>
         <option value="npm">📦 npm</option>
         <option value="docs">📖 Docs</option>
-        <option value="other">📊 Other</option>
+        <option value="other">🔗 Other</option>
       </select>
-      <input type="url" placeholder="https://">
-      <button class="btn btn-sm btn-danger" onclick="removeLink(this)">✕</button>`;
-    document.getElementById('linksList').appendChild(row);
-  }
-  function removeLink(btn) {
-    const rows = document.querySelectorAll('.link-row');
-    if (rows.length > 1) btn.closest('.link-row').remove();
-    else showToast('Keep at least one link row', 'error');
-  }
+    </div>
+    <div class="form-group">
+      <label>Label (optional)</label>
+      <input type="text" id="lLabel" placeholder="e.g. View Demo">
+    </div>
+    <div class="form-group">
+      <label>URL</label>
+      <input type="url" id="lUrl" placeholder="https://">
+    </div>
+    <div class="modal-footer">
+      <div></div>
+      <div class="modal-footer-right">
+        <button class="btn btn-ghost" onclick="closeModal(&#39;linkModal&#39;)">Cancel</button>
+        <button class="btn btn-primary" onclick="confirmAddLink()">Add Link</button>
+      </div>
+    </div>
+  </div>
+</div>
 
-  // ── OPEN EDIT ──
-  function openEdit(idx) {
-    editingIndex = idx;
-    mediaFiles = [...(cardMedia[idx] || [])];
-    renderMediaPreview();
-    document.getElementById('modalTitle').textContent = idx === null ? 'Add New Software' : 'Edit Software';
-    // reset one link row
-    document.getElementById('linksList').innerHTML = `
-      <div class="link-row">
-        <select>
-          <option value="live">🌐 Live</option>
-          <option value="github">⌥ GitHub</option>
-          <option value="npm">📦 npm</option>
-          <option value="docs">📖 Docs</option>
-          <option value="other">📊 Other</option>
-        </select>
-        <input type="url" placeholder="https://">
-        <button class="btn btn-sm btn-danger" onclick="removeLink(this)">✕</button>
-      </div>`;
-    openModal('editModal');
-  }
-  function openAdd() { openEdit(null); document.getElementById('editName').value = ''; document.getElementById('editDesc').value = ''; document.getElementById('editVersion').value = ''; }
+<!-- ════════════════════════════
+     CUSTOMIZE MORE (EMAIL) MODAL
+════════════════════════════ -->
+<div class="modal-overlay" id="emailModal">
+  <div class="modal" style="max-width:450px;">
+    <div class="modal-header">
+      <h2>✦ Customize More</h2>
+      <button class="close-btn" onclick="closeModal(&#39;emailModal&#39;)">✕</button>
+    </div>
+    <div class="email-hint">
+      Want a custom feature or design tweak for <strong id="emailSoftName">this software</strong>? Send us a message.
+    </div>
+    <div class="form-group"><label>Your Name</label><input type="text" id="emailName" placeholder="John Doe"></div>
+    <div class="form-group"><label>Your Email</label><input type="email" id="emailAddr" placeholder="you@example.com"></div>
+    <div class="form-group"><label>What do you need?</label><textarea id="emailBody" style="min-height:100px;" placeholder="Describe what you&#39;d like…"></textarea></div>
+    <div class="modal-footer">
+      <div></div>
+      <div class="modal-footer-right">
+        <button class="btn btn-ghost" onclick="closeModal(&#39;emailModal&#39;)">Cancel</button>
+        <button class="btn btn-primary" onclick="sendEmail()">Send ✉</button>
+      </div>
+    </div>
+  </div>
+</div>
 
-  // ── CHIP CLASS FROM TYPE ──
-  function chipClass(type) {
-    const map = { live:'live', github:'github', npm:'npm', docs:'docs', other:'other' };
-    return map[type] || 'other';
-  }
-  function chipLabel(type, url) {
-    const map = { live:'🌐 Live', github:'⌥ GitHub', npm:'📦 npm', docs:'📖 Docs', other:'🔗 Link' };
-    return map[type] || '🔗 Link';
-  }
+<!-- ════════════════════════════
+     SITE SETTINGS MODAL
+════════════════════════════ -->
+<div class="modal-overlay" id="hubModal">
+  <div class="modal">
+    <div class="modal-header">
+      <h2>⚙ Site Settings</h2>
+      <button class="close-btn" onclick="closeModal(&#39;hubModal&#39;)">✕</button>
+    </div>
 
-  // ── SAVE CARD ──
-  function saveCard() {
-    const name     = document.getElementById('editName').value.trim();
-    if (!name) { showToast('Please enter a name', 'error'); return; }
-    const desc     = document.getElementById('editDesc').value.trim();
-    const version  = document.getElementById('editVersion').value.trim() || 'v1.0.0';
-    const category = document.getElementById('editCategory').value;
-    const tags     = document.getElementById('editTags').value.split(',').map(t=>t.trim()).filter(Boolean);
+    <div class="settings-section-title">Header</div>
+    <div class="form-row">
+      <div class="form-group">
+        <label>Logo / Site Name</label>
+        <input type="text" id="hLogo" placeholder="devlaunch.io">
+      </div>
+      <div class="form-group">
+        <label>Header Tagline</label>
+        <input type="text" id="hTagline" placeholder="My Software Hub">
+      </div>
+    </div>
 
-    // Build links HTML for strip
-    const linkRows = document.querySelectorAll('#linksList .link-row');
-    let stripHTML = '';
-    linkRows.forEach(row => {
-      const type = row.querySelector('select').value;
-      const url  = row.querySelector('input').value.trim();
-      if (url) stripHTML += `<a href="${url}" class="launch-chip ${chipClass(type)}" target="_blank">${chipLabel(type)} <span class="chip-arrow">↗</span></a>`;
+    <div class="settings-section-title">Hero Section</div>
+    <div class="form-group">
+      <label>Eyebrow Text</label>
+      <input type="text" id="hEyebrow" placeholder="✦ your personal software portfolio">
+    </div>
+    <div class="form-group">
+      <label>Hero Title</label>
+      <input type="text" id="hTitle" placeholder="My Software Hub">
+    </div>
+    <div class="form-group">
+      <label>Hero Description</label>
+      <textarea id="hDesc" style="min-height:65px;"></textarea>
+    </div>
+
+    <div class="settings-section-title">Theme</div>
+    <div class="form-group">
+      <label>Accent Color</label>
+      <div class="swatch-row">
+        <div class="swatch sel" style="background:#6c63ff;" onclick="setAccent(&#39;#6c63ff&#39;,&#39;#a78bfa&#39;,this)"></div>
+        <div class="swatch" style="background:#22d3a0;" onclick="setAccent(&#39;#22d3a0&#39;,&#39;#6ee7b7&#39;,this)"></div>
+        <div class="swatch" style="background:#f59e0b;" onclick="setAccent(&#39;#f59e0b&#39;,&#39;#fcd34d&#39;,this)"></div>
+        <div class="swatch" style="background:#ff6b6b;" onclick="setAccent(&#39;#ff6b6b&#39;,&#39;#fca5a5&#39;,this)"></div>
+        <div class="swatch" style="background:#38bdf8;" onclick="setAccent(&#39;#38bdf8&#39;,&#39;#7dd3fc&#39;,this)"></div>
+        <div class="swatch" style="background:#f472b6;" onclick="setAccent(&#39;#f472b6&#39;,&#39;#f9a8d4&#39;,this)"></div>
+      </div>
+    </div>
+
+    <div class="settings-section-title">Contact</div>
+    <div class="form-group">
+      <label>Your Email (for Customize More requests)</label>
+      <input type="email" id="hEmail" placeholder="you@example.com">
+    </div>
+
+    <div class="modal-footer">
+      <div></div>
+      <div class="modal-footer-right">
+        <button class="btn btn-ghost" onclick="closeModal(&#39;hubModal&#39;)">Cancel</button>
+        <button class="btn btn-primary" onclick="saveHub()">Save Settings</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="toast" class="">✓ Saved!</div>
+
+<script>
+// ══ STATE ══
+let editingCardEl  = null;
+let linkTargetCard = null;
+let hubEmail       = 'you@example.com';
+let selEmoji = '🚀', selGlow = 'rgba(108,99,255,0.22)', selIconBg = 'rgba(108,99,255,0.2)';
+
+// type→chip class map
+const typeClass = { live:'live', github:'github', npm:'npm', docs:'docs', other:'' };
+const typeLabel = { live:'🌐 Live', github:'⌥ GitHub', npm:'📦 npm', docs:'📖 Docs', other:'🔗 Link' };
+
+// ── LAUNCH BANNER CLICK ──
+function launchCard(banner) {
+  const url = banner.closest('.card').dataset.url;
+  if (url && url !== '#') window.open(url, '_blank');
+  else showToast('No launch URL set — click Edit to add one', 'error');
+}
+
+// ── LIKE ──
+function toggleLike(btn) {
+  const span = btn.querySelector('.like-count');
+  const heart = btn.querySelector('.heart');
+  const liked = btn.classList.toggle('liked');
+  const n = parseInt(span.textContent);
+  span.textContent = liked ? n+1 : n-1;
+  heart.textContent = liked ? '♥' : '♡';
+  btn.closest('.card').dataset.likes = liked ? n+1 : n-1;
+  showToast(liked ? '♥ Liked!' : 'Unliked', liked ? 'success' : '');
+}
+
+// ── INLINE TAG EDIT ──
+function removeTag(tagEl) {
+  if (confirm('Remove this tag?')) { tagEl.remove(); showToast('Tag removed',''); }
+}
+function addTagInline(btn) {
+  const name = prompt('Enter tag name:');
+  if (!name || !name.trim()) return;
+  const tag = document.createElement('span');
+  tag.className = 'tag tag-editable';
+  tag.title = 'Click to remove';
+  tag.textContent = name.trim();
+  tag.onclick = () => removeTag(tag);
+  btn.before(tag);
+  showToast('Tag added','success');
+}
+
+// ── SYNC CARD NAME → BANNER ──
+function syncCardName(titleEl) {
+  const card = titleEl.closest('.card');
+  const n = titleEl.textContent.trim();
+  const bannerName = card.querySelector('.launch-name');
+  if (bannerName) bannerName.textContent = n;
+  card.dataset.name = n;
+  buildQuickAccess();
+}
+
+// ── QUICK ACCESS ──
+function buildQuickAccess() {
+  const row = document.getElementById('qaRow');
+  const pills = [];
+  document.querySelectorAll('.card[data-id]').forEach(card => {
+    const name = card.dataset.name || card.querySelector('.card-title')?.textContent || 'Software';
+    const icon = card.querySelector('.card-icon')?.textContent || '🔗';
+    card.querySelectorAll('.card-links a.link-chip').forEach(chip => {
+      const href = chip.getAttribute('href');
+      if (!href || href === '#') return;
+      const cls = [...chip.classList].find(c=>['live','github','npm','docs'].includes(c)) || 'other';
+      const lbl = chip.textContent.trim();
+      pills.push({ name, icon, lbl, href, cls });
     });
-    if (!stripHTML) stripHTML = '<span class="no-links-hint">No links added</span>';
-
-    const tagsHTML = tags.map(t=>`<span class="tag">${t}</span>`).join('');
-
-    if (editingIndex !== null) {
-      const card = document.querySelectorAll('.card[data-id]')[editingIndex];
-      if (card) {
-        card.querySelector('.card-title').textContent = name;
-        card.querySelector('.card-desc').textContent  = desc || 'No description yet.';
-        card.querySelector('.card-version').textContent = version;
-        card.querySelector('.card-icon').textContent = selectedEmoji;
-        card.querySelector('.card-icon').style.background = selectedColor;
-        card.querySelector('.card-tags').innerHTML = tagsHTML;
-        card.querySelector('.media-badge').textContent = category;
-        card.querySelector('.launch-strip').innerHTML = stripHTML;
-        card.dataset.name = name;
-        // media
-        if (mediaFiles.length > 0) {
-          cardMedia[editingIndex] = [...mediaFiles];
-          const m = mediaFiles[0];
-          const mediaCont = card.querySelector('.card-media');
-          const badge = `<div class="media-badge">${category}</div>`;
-          const upBtn = `<button class="media-upload-btn" onclick="event.stopPropagation(); openEdit(${editingIndex})"><svg width="12" height="12" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>Upload Media</button>`;
-          mediaCont.innerHTML = (m.type.startsWith('video')
-            ? `<video src="${m.url}" autoplay muted loop style="width:100%;height:100%;object-fit:cover;"></video>`
-            : `<img src="${m.url}" style="width:100%;height:100%;object-fit:cover;">`)
-            + badge + upBtn;
-          mediaCont.onclick = () => openMediaModal(editingIndex);
-        }
-      }
-      showToast('✓ Software updated!', 'success');
-    } else {
-      // NEW CARD
-      const idx = document.querySelectorAll('.card[data-id]').length;
-      cardMedia[idx] = [...mediaFiles];
-      let mediaInner = `<div class="media-placeholder"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" width="36" height="36"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="m9 9 6 3-6 3V9z"/></svg><span>Click to view media</span></div>`;
-      if (mediaFiles.length > 0) {
-        const m = mediaFiles[0];
-        mediaInner = m.type.startsWith('video')
-          ? `<video src="${m.url}" autoplay muted loop style="width:100%;height:100%;object-fit:cover;"></video>`
-          : `<img src="${m.url}" style="width:100%;height:100%;object-fit:cover;">`;
-      }
-
-      const nc = document.createElement('div');
-      nc.className = 'card';
-      nc.dataset.id   = idx + 1;
-      nc.dataset.name = name;
-      nc.dataset.likes = '0';
-      nc.innerHTML = `
-        <div class="card-media" onclick="openMediaModal(${idx})">
-          ${mediaInner}
-          <div class="media-badge">${category}</div>
-          <button class="media-upload-btn" onclick="event.stopPropagation(); openEdit(${idx})">
-            <svg width="12" height="12" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
-            Upload Media
-          </button>
-        </div>
-        <div class="launch-strip" id="strip-${idx}">${stripHTML}</div>
-        <div class="card-body">
-          <div class="card-top">
-            <div class="card-icon" style="background:${selectedColor};">${selectedEmoji}</div>
-            <div class="card-title-wrap">
-              <div class="card-title" onclick="openEdit(${idx})">${name}</div>
-              <div class="card-version">${version}</div>
-            </div>
-          </div>
-          <div class="card-desc" onclick="openEdit(${idx})">${desc || 'No description yet. Click to add one.'}</div>
-          <div class="card-tags">${tagsHTML}</div>
-          <div class="card-footer">
-            <div class="card-actions">
-              <button class="like-btn" onclick="toggleLike(this)"><span class="heart">♡</span> <span class="like-count">0</span></button>
-              <button class="edit-btn" onclick="openEdit(${idx})">✎ Edit</button>
-            </div>
-            <button class="customize-btn" onclick="openCustomizeEmail('${name}')">✦ Customize More</button>
-          </div>
-        </div>`;
-      document.querySelector('.add-card').before(nc);
-      showToast('✓ Software added!', 'success');
-    }
-
-    closeModal('editModal');
-    setTimeout(buildQuickAccess, 100);
-  }
-
-  // ── MEDIA VIEWER ──
-  function openMediaModal(idx) {
-    const files = cardMedia[idx] || [];
-    const card = document.querySelectorAll('.card[data-id]')[idx];
-    const name = card?.querySelector('.card-title')?.textContent || 'Media';
-    document.getElementById('mediaModalTitle').textContent = name + ' — Media';
-    if (files.length === 0) {
-      document.getElementById('mediaModalContent').innerHTML = '<p style="color:var(--muted);font-size:0.875rem;padding:1rem 0;">No media uploaded yet. Click Edit to upload images or videos.</p>';
-    } else {
-      document.getElementById('mediaModalContent').innerHTML = files.map(f =>
-        f.type.startsWith('video')
-          ? `<video src="${f.url}" controls style="width:100%;border-radius:8px;"></video>`
-          : `<img src="${f.url}" style="width:100%;border-radius:8px;object-fit:cover;cursor:pointer;" onclick="window.open('${f.url}')">`
-      ).join('');
-    }
-    openModal('mediaModal');
-  }
-
-  // ── EMAIL ──
-  function openCustomizeEmail(softwareName) {
-    document.getElementById('emailSoftwareName').textContent = softwareName;
-    document.getElementById('emailFrom').value = '';
-    document.getElementById('emailReply').value = '';
-    document.getElementById('emailBody').value = '';
-    openModal('emailModal');
-  }
-  function sendEmail() {
-    const name  = document.getElementById('emailFrom').value.trim();
-    const email = document.getElementById('emailReply').value.trim();
-    const body  = document.getElementById('emailBody').value.trim();
-    const soft  = document.getElementById('emailSoftwareName').textContent;
-    if (!email || !body) { showToast('Please fill in email and message', 'error'); return; }
-    const subj  = encodeURIComponent(`Customize Request: ${soft}`);
-    const mbody = encodeURIComponent(`From: ${name}\nEmail: ${email}\n\n${body}`);
-    window.open(`mailto:${hubEmail}?subject=${subj}&body=${mbody}`);
-    closeModal('emailModal');
-    showToast('✓ Opening your email client…', 'success');
-  }
-
-  // ── HUB SETTINGS ──
-  function openCustomize() { openModal('hubModal'); }
-  function saveHub() {
-    const title    = document.getElementById('hubTitle').value.trim();
-    const subtitle = document.getElementById('hubSubtitle').value.trim();
-    hubEmail       = document.getElementById('hubEmail').value.trim() || hubEmail;
-    if (title)    document.getElementById('heroTitle').textContent = title;
-    if (subtitle) document.getElementById('heroSubtitle').textContent = subtitle;
-    closeModal('hubModal');
-    showToast('✓ Hub settings saved!', 'success');
-  }
-  function setAccent(hex, el) {
-    document.documentElement.style.setProperty('--accent', hex);
-    document.querySelectorAll('#hubModal .color-swatch').forEach(s => s.classList.remove('selected'));
-    el.classList.add('selected');
-  }
-
-  // ── MODAL HELPERS ──
-  function openModal(id)  { document.getElementById(id).classList.add('open'); }
-  function closeModal(id) { document.getElementById(id).classList.remove('open'); }
-  document.querySelectorAll('.modal-overlay').forEach(o => {
-    o.addEventListener('click', e => { if (e.target === o) o.classList.remove('open'); });
   });
-
-  // ── TOAST ──
-  let toastTimer;
-  function showToast(msg, type) {
-    const t = document.getElementById('toast');
-    t.textContent = msg;
-    t.className = `show ${type}`;
-    clearTimeout(toastTimer);
-    toastTimer = setTimeout(() => { t.className = ''; }, 2800);
+  document.getElementById('qaCount').textContent = pills.length + ' link' + (pills.length!==1?'s':'');
+  if (!pills.length) {
+    row.innerHTML = '<span style="font-size:0.8rem;color:var(--muted);font-style:italic;">Links from your software appear here →</span>';
+    return;
   }
+  row.innerHTML = pills.map(p=>`
+    <a href="${p.href}" target="_blank" class="qa-pill">
+      <span class="pill-icon">${p.icon}</span>
+      <span>${p.name}</span>
+      <span class="pill-type">${p.lbl}</span>
+      <span class="pill-arrow">↗</span>
+    </a>`).join('');
+}
+buildQuickAccess();
+
+// ── SEARCH / SORT ──
+function filterCards() {
+  const q = document.getElementById('searchInput').value.toLowerCase();
+  document.querySelectorAll('.card[data-id]').forEach(c => {
+    const t = (c.dataset.name||'').toLowerCase();
+    const d = c.querySelector('.card-desc')?.textContent.toLowerCase()||'';
+    c.style.display = (t.includes(q)||d.includes(q)) ? '' : 'none';
+  });
+}
+function sortCards(by) {
+  const grid = document.getElementById('softwareGrid');
+  const add  = grid.querySelector('.add-card');
+  const cards = [...grid.querySelectorAll('.card[data-id]')];
+  if (by==='alpha') cards.sort((a,b)=>(a.dataset.name||'').localeCompare(b.dataset.name||''));
+  else if (by==='likes') cards.sort((a,b)=>parseInt(b.dataset.likes||0)-parseInt(a.dataset.likes||0));
+  cards.forEach(c => grid.insertBefore(c, add));
+}
+
+// ── OPEN ADD LINK (inline button) ──
+function openAddLink(card) {
+  linkTargetCard = card;
+  document.getElementById('lType').value = 'live';
+  document.getElementById('lLabel').value = '';
+  document.getElementById('lUrl').value = '';
+  openModal('linkModal');
+}
+function confirmAddLink() {
+  const type  = document.getElementById('lType').value;
+  const label = document.getElementById('lLabel').value.trim();
+  const url   = document.getElementById('lUrl').value.trim();
+  if (!url) { showToast('Please enter a URL','error'); return; }
+  const cls   = typeClass[type] || '';
+  const lbl   = label || typeLabel[type] || '🔗 Link';
+  const chip  = document.createElement('a');
+  chip.href   = url; chip.target = '_blank';
+  chip.className = `link-chip ${cls}`;
+  chip.textContent = lbl;
+  const addBtn = linkTargetCard.querySelector('.add-link-chip');
+  addBtn.before(chip);
+  closeModal('linkModal');
+  showToast('Link added','success');
+  buildQuickAccess();
+}
+
+// ── PICKER HELPERS ──
+function pickEmoji(el) {
+  document.querySelectorAll('#eEmojiRow .emoji-opt').forEach(e=>e.classList.remove('sel'));
+  el.classList.add('sel'); selEmoji = el.dataset.e;
+}
+function pickGlow(el) {
+  document.querySelectorAll('#eGlowSwatches .swatch').forEach(s=>s.classList.remove('sel'));
+  el.classList.add('sel'); selGlow = el.dataset.g;
+}
+function pickIconBg(el) {
+  document.querySelectorAll('#eIconSwatches .swatch').forEach(s=>s.classList.remove('sel'));
+  el.classList.add('sel'); selIconBg = el.dataset.c;
+}
+
+// ── OPEN EDIT CARD ──
+function openEditCard(idx) {
+  const cards = document.querySelectorAll('.card[data-id]');
+  editingCardEl = cards[idx] || null;
+  const isNew = !editingCardEl;
+  document.getElementById('editModalTitle').textContent = isNew ? 'Add New Software' : 'Edit Software';
+  document.getElementById('delCardBtn').style.display = isNew ? 'none' : 'flex';
+
+  if (!isNew) {
+    document.getElementById('eName').value    = editingCardEl.querySelector('.card-title')?.textContent.trim() || '';
+    document.getElementById('eVersion').value = editingCardEl.querySelector('.card-version')?.textContent.trim() || '';
+    document.getElementById('eUrl').value     = editingCardEl.dataset.url || '';
+    document.getElementById('eDesc').value    = editingCardEl.querySelector('.card-desc')?.textContent.trim() || '';
+    // category
+    const badge = editingCardEl.querySelector('.banner-cat-badge')?.textContent.trim() || 'App';
+    document.getElementById('eCategory').value = badge;
+    // tags
+    const tags = [...editingCardEl.querySelectorAll('.card-tags .tag')].map(t=>t.textContent.trim()).join(', ');
+    document.getElementById('eTags').value = tags;
+    // links
+    const links = [...editingCardEl.querySelectorAll('.card-links a.link-chip')];
+    document.getElementById('eLinks').innerHTML = '';
+    links.forEach(l => {
+      const cls = [...l.classList].find(c=>['live','github','npm','docs'].includes(c)) || 'other';
+      addModalLinkRow(cls, l.href, l.textContent.trim());
+    });
+    if (!links.length) addModalLinkRow('live','','');
+  } else {
+    document.getElementById('eName').value = '';
+    document.getElementById('eVersion').value = '';
+    document.getElementById('eUrl').value = '';
+    document.getElementById('eDesc').value = '';
+    document.getElementById('eTags').value = '';
+    document.getElementById('eLinks').innerHTML = '';
+    addModalLinkRow('live','','');
+  }
+  openModal('editModal');
+}
+
+function openNewCard() {
+  editingCardEl = null;
+  openEditCard(-1);
+}
+
+// ── MODAL LINK ROWS ──
+function addModalLinkRow(type, url, label) {
+  const row = document.createElement('div');
+  row.className = 'modal-link-row';
+  row.innerHTML = `
+    <select>
+      <option value="live" ${type==='live'?'selected':''}>🌐 Live</option>
+      <option value="github" ${type==='github'?'selected':''}>⌥ GitHub</option>
+      <option value="npm" ${type==='npm'?'selected':''}>📦 npm</option>
+      <option value="docs" ${type==='docs'?'selected':''}>📖 Docs</option>
+      <option value="other" ${type==='other'?'selected':''}>🔗 Other</option>
+    </select>
+    <input type="url" placeholder="https://" value="${url||''}">
+    <button class="btn btn-sm btn-danger" onclick="removeModalLink(this)">✕</button>`;
+  document.getElementById('eLinks').appendChild(row);
+}
+function addModalLink() { addModalLinkRow('live','',''); }
+function removeModalLink(btn) {
+  const rows = document.querySelectorAll('#eLinks .modal-link-row');
+  if (rows.length > 1) btn.closest('.modal-link-row').remove();
+  else showToast('Keep at least one link row','error');
+}
+
+// ── SAVE CARD ──
+function saveCard() {
+  const name    = document.getElementById('eName').value.trim();
+  if (!name) { showToast('Please enter a name','error'); return; }
+  const version = document.getElementById('eVersion').value.trim() || 'v1.0.0';
+  const url     = document.getElementById('eUrl').value.trim();
+  const cat     = document.getElementById('eCategory').value;
+  const desc    = document.getElementById('eDesc').value.trim();
+  const tags    = document.getElementById('eTags').value.split(',').map(t=>t.trim()).filter(Boolean);
+
+  // collect links
+  const linkRows = document.querySelectorAll('#eLinks .modal-link-row');
+  let linksHTML = '';
+  linkRows.forEach(row => {
+    const t = row.querySelector('select').value;
+    const u = row.querySelector('input').value.trim();
+    if (u) linksHTML += `<a href="${u}" class="link-chip ${typeClass[t]||''}" target="_blank">${typeLabel[t]||'🔗 Link'}</a>`;
+  });
+  linksHTML += `<button class="add-link-chip" onclick="openAddLink(this.closest('.card'))">+ link</button>`;
+
+  const tagsHTML = tags.map(t=>`<span class="tag tag-editable" onclick="removeTag(this)" title="Click to remove">${t}</span>`).join('') +
+                   `<button class="add-tag-btn" onclick="addTagInline(this)">+ tag</button>`;
+
+  const urlLabel = url ? url.replace(/^https?:\/\//,'').split('/')[0] : 'no url set';
+
+  if (editingCardEl) {
+    // UPDATE existing
+    editingCardEl.dataset.url  = url;
+    editingCardEl.dataset.name = name;
+    editingCardEl.dataset.url  = url;
+    editingCardEl.style.setProperty('--card-glow', selGlow);
+    editingCardEl.querySelector('.launch-name').textContent  = name;
+    editingCardEl.querySelector('.launch-url-label').textContent = urlLabel;
+    editingCardEl.querySelector('.banner-cat-badge').textContent = cat;
+    editingCardEl.querySelector('.card-title').textContent   = name;
+    editingCardEl.querySelector('.card-version').textContent = version;
+    editingCardEl.querySelector('.card-desc').textContent    = desc || 'No description yet.';
+    editingCardEl.querySelector('.card-icon').textContent    = selEmoji;
+    editingCardEl.querySelector('.card-icon').style.background = selIconBg;
+    editingCardEl.querySelector('.card-tags').innerHTML      = tagsHTML;
+    editingCardEl.querySelector('.card-links').innerHTML     = linksHTML;
+    showToast('✓ Saved!','success');
+  } else {
+    // NEW CARD
+    const idx = document.querySelectorAll('.card[data-id]').length + 1;
+    const nc = document.createElement('div');
+    nc.className = 'card';
+    nc.dataset.id    = idx;
+    nc.dataset.name  = name;
+    nc.dataset.likes = '0';
+    nc.dataset.url   = url;
+    nc.style.setProperty('--card-glow', selGlow);
+    nc.innerHTML = `
+      <div class="launch-banner" onclick="launchCard(this)">
+        <div class="launch-banner-grid"></div>
+        <div class="play-btn"><svg viewBox="0 0 24 24" fill="#fff"><path d="M8 5v14l11-7z"/></svg></div>
+        <div class="launch-name">${name}</div>
+        <div class="launch-url-label">${urlLabel}</div>
+        <div class="banner-cat-badge">${cat}</div>
+        <button class="banner-edit-btn" onclick="event.stopPropagation(); openEditCardEl(this.closest('.card'))">✎ Edit</button>
+      </div>
+      <div class="card-body">
+        <div class="card-top">
+          <div class="card-icon" style="background:${selIconBg};">${selEmoji}</div>
+          <div class="card-title-wrap">
+            <div class="card-title" contenteditable="true" spellcheck="false" onblur="syncCardName(this)">${name}</div>
+            <div class="card-version" contenteditable="true" spellcheck="false">${version}</div>
+          </div>
+        </div>
+        <div class="card-desc" contenteditable="true" spellcheck="false">${desc||'No description yet. Click to edit.'}</div>
+        <div class="card-tags">${tagsHTML}</div>
+        <div class="card-links">${linksHTML}</div>
+        <div class="card-footer">
+          <div class="card-actions">
+            <button class="like-btn" onclick="toggleLike(this)"><span class="heart">♡</span> <span class="like-count">0</span></button>
+            <button class="edit-card-btn" onclick="openEditCardEl(this.closest('.card'))">✎ Edit</button>
+          </div>
+          <button class="customize-btn" onclick="openCustomizeEmail('${name}')">✦ Customize More</button>
+        </div>
+      </div>`;
+    document.querySelector('.add-card').before(nc);
+    showToast('✓ Software added!','success');
+  }
+  closeModal('editModal');
+  setTimeout(buildQuickAccess, 80);
+}
+
+// Helper: open edit by element reference (for dynamically added cards)
+function openEditCardEl(cardEl) {
+  editingCardEl = cardEl;
+  const cards = [...document.querySelectorAll('.card[data-id]')];
+  const idx = cards.indexOf(cardEl);
+  openEditCard(idx >= 0 ? idx : 0);
+}
+
+// ── DELETE CARD ──
+function deleteCard() {
+  if (!editingCardEl) return;
+  if (!confirm('Delete this software card?')) return;
+  editingCardEl.remove();
+  editingCardEl = null;
+  closeModal('editModal');
+  buildQuickAccess();
+  showToast('Deleted','');
+}
+
+// ── EMAIL ──
+function openCustomizeEmail(name) {
+  document.getElementById('emailSoftName').textContent = name;
+  document.getElementById('emailName').value = '';
+  document.getElementById('emailAddr').value = '';
+  document.getElementById('emailBody').value = '';
+  openModal('emailModal');
+}
+function sendEmail() {
+  const n = document.getElementById('emailName').value.trim();
+  const e = document.getElementById('emailAddr').value.trim();
+  const b = document.getElementById('emailBody').value.trim();
+  const s = document.getElementById('emailSoftName').textContent;
+  if (!e||!b) { showToast('Fill in email and message','error'); return; }
+  const sub  = encodeURIComponent(`Customize Request: ${s}`);
+  const body = encodeURIComponent(`From: ${n}\nEmail: ${e}\n\n${b}`);
+  window.open(`mailto:${hubEmail}?subject=${sub}&body=${body}`);
+  closeModal('emailModal');
+  showToast('✓ Opening email client…','success');
+}
+
+// ── HUB SETTINGS ──
+function saveHub() {
+  const logo    = document.getElementById('hLogo').value.trim();
+  const tagline = document.getElementById('hTagline').value.trim();
+  const eyebrow = document.getElementById('hEyebrow').value.trim();
+  const title   = document.getElementById('hTitle').value.trim();
+  const desc    = document.getElementById('hDesc').value.trim();
+  hubEmail      = document.getElementById('hEmail').value.trim() || hubEmail;
+  if (logo)    document.getElementById('siteLogo').textContent = logo;
+  if (tagline) document.getElementById('siteTagline').textContent = tagline;
+  if (eyebrow) document.getElementById('heroEyebrow').textContent = eyebrow;
+  if (title)   document.getElementById('heroTitle').textContent = title;
+  if (desc)    document.getElementById('heroDesc').textContent = desc;
+  closeModal('hubModal');
+  showToast('✓ Settings saved!','success');
+}
+
+// Pre-fill hub modal on open
+document.getElementById('hubModal').addEventListener('transitionend', ()=>{});
+const origOpenModal = window.openModal;
+function openModal(id) {
+  if (id === 'hubModal') {
+    document.getElementById('hLogo').value    = document.getElementById('siteLogo').textContent;
+    document.getElementById('hTagline').value = document.getElementById('siteTagline').textContent;
+    document.getElementById('hEyebrow').value = document.getElementById('heroEyebrow').textContent;
+    document.getElementById('hTitle').value   = document.getElementById('heroTitle').textContent;
+    document.getElementById('hDesc').value    = document.getElementById('heroDesc').textContent;
+    document.getElementById('hEmail').value   = hubEmail;
+  }
+  document.getElementById(id).classList.add('open');
+}
+function closeModal(id) { document.getElementById(id).classList.remove('open'); }
+
+function setAccent(hex, hex2, el) {
+  document.documentElement.style.setProperty('--accent', hex);
+  document.documentElement.style.setProperty('--accent2', hex2);
+  document.querySelectorAll('#hubModal .swatch').forEach(s=>s.classList.remove('sel'));
+  el.classList.add('sel');
+}
+
+// Close on overlay click
+document.querySelectorAll('.modal-overlay').forEach(o => {
+  o.addEventListener('click', e => { if (e.target===o) o.classList.remove('open'); });
+});
+
+// ── TOAST ──
+let toastTimer;
+function showToast(msg, type) {
+  const t = document.getElementById('toast');
+  t.textContent = msg; t.className = `show ${type}`;
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(()=>{ t.className=''; }, 2600);
+}
 </script>
-</body>
-</html>
+
+
+</body></html>
